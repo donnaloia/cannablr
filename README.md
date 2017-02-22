@@ -10,6 +10,8 @@
  - 1 Messaging microservice written in Flask
  - 1 User/Profile microservice written in Flask
 
+[![N|Solid](https://raw.github.com/donnaloia/cannablr/master/web/housekeeping/Drawing.png)](https://raw.github.com/donnaloia/cannablr/master/web/housekeeping/Drawing.png)
+
 # Build/CI/Deployment Layout:
 
 When this project was live, the path to production looked like the following:
@@ -41,7 +43,7 @@ cannablr uses a number of open source projects to work properly
 
 ### Instructions
 
-Cannablr requires Docker to run.
+cannablr requires Docker to run.
 
 Clone the repo and it's as simple as docker-compose up.
 
