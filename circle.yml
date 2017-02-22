@@ -1,0 +1,14 @@
+# circle.yml
+machine:
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - pip install docker-compose
+
+test:
+  pre:
+    - docker-compose up -d
+  override:
+    - docker-compose run web python manage.py test

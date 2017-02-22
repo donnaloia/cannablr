@@ -1,0 +1,201 @@
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+body
+}
+
+
+
+
+
+.widget
+{
+  position: relative;
+  width: 100%;
+  height: 890px;
+  margin: 0px auto;
+  background: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, .1);
+}
+
+.widget > .cover
+{
+  height: 235px;
+  vertical-align: top;
+  overflow: hidden;
+  background-image: url(/static/img/sativa.jpg);
+  background-repeat: repeat;
+
+}
+.coveroverlay
+{ 
+  vertical-align: top;
+  width: 100%;
+  height: 280px;
+  background-color: rgba(3,132,15,.3);
+}
+
+.widget > .coverpic
+{
+
+  height: 100%;
+  width: 100%;
+}
+
+.widget > .coverpic > img
+{
+  width: 100%;
+  height: auto;
+  min-height: 160px;
+  border-radius: 4px 4px 0 0;
+  background-repeat: repeat;
+}
+
+.widget > .photo
+{
+  position: absolute;
+  top: 19%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 0 0 0 -55px;
+  border: 5px solid #FFF;
+  border-radius: 50%;
+}
+
+.widget > h1, .widget > h2, .widget > h3, .widget > h4
+{
+  display: block;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #999;
+  font-weight: 300;
+  letter-spacing: 0.1em;  
+}
+.widget > h2, .widget > h3, .widget > h4
+{
+  margin-top: 6px;
+}
+
+.widget > h1
+{ bottom: 0;
+  margin: 60px 0 1px;
+  font-size: 26px;
+  color: #000;
+}
+
+.widget > h3 { font-size: 12px }
+
+.widget > h4
+{
+  margin: 45px 0 3px;
+  font-size: 26px;
+  color: #000;
+}
+
+.widget > ul
+{
+  position: absolute;
+  top: 20px;
+  left: 100%;
+  background: #2CDFD3;
+  border-radius: 0 3px 3px 0;
+}
+
+.widget > ul > li > a
+{
+  display: block;
+  padding: 5px 6px;
+  color: #FFF;
+  cursor: pointer;
+  text-align: center;
+  border-bottom: 1px solid #2CD5CA;
+  transition: background-color .3s;
+}
+
+.widget > ul > li:hover > a { background-color: #2CD5CA }
+.widget > ul > li:first-child > a { border-radius: 0 3px 0 0 }
+
+.widget > ul > li:last-child > a
+{
+  border: none;
+  border-radius: 0 0 3px 0;
+}
+
+
+.buttons {
+  text-align: center;
+  margin-bottom: 100px;
+  margin-top: 20px;
+  font-family: helvetica;
+}
+.button {
+  display: inline-block !important;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 10px 35px 10px 35px;
+  border-radius: 4px;
+  margin: 10px;
+}
+.custom-button {
+  display: inline-block !important;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 13px 35px 13px 35px;
+  border-radius: 4px;
+  margin: 10px;
+  border: none;
+}
+.red-btn {
+  background: #e96656;
+}
+.green-btn {
+  background: #20AA73;
+}
+.blue-btn {
+  background: #3ab0e2;
+}
+.yellow-btn {
+  background: #E7AC44;
+}
+.red-btn,.green-btn,.blue-btn,.yellow-btn {
+  color: #FFF;
+  -webkit-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+}
+.blue-btn:hover {
+  color: #FFF;
+  background: #1288b9;
+}
+.red-btn:hover {
+  color: #FFF;
+  background: #cb4332;
+}
+.green-btn:hover {
+  color: #FFF;
+  background: #069059;
+}
+.yellow-btn:hover {
+  color: #FFF;
+  background: #d8951e;
+}
+
+

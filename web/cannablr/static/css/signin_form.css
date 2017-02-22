@@ -1,0 +1,87 @@
+body {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+.backgroundiv {
+  background-image: url(/static/img/bg-hero.jpg);
+  width: 100%;
+  position: relative;
+  padding-top: 150px;
+  height: 100%;
+  margin-top: -52px;
+}
+.background2div {
+    background-color: black;
+    background-repeat: repeat;
+    height: 800px;
+    padding-bottom: 100px;
+}
+.linecontainer {
+  width: 407px;
+  display: inline-block;
+  margin-left: 72px;
+}
+.formdiv {
+  padding-top: 60px;
+  float: center;
+  background-color: white; 
+  height: 376px;
+  margin: 0 auto;
+  border-radius: 3px;
+  width: 556px;
+}
+.selltitle {
+  font-family: futura;
+  font-size: 28px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.sellsubtitle {
+  font-family: futura;
+  font-size: 16px;
+  color: gray;
+  text-align: center;
+  padding-bottom: 55px;
+  margin: 0 auto;
+  width: 526px;
+}
+.forminput {
+  float:right;
+  #margin-left: 338px;
+  margin-bottom: 32px;
+
+}
+
+.forminput input {
+  padding: .5em;
+  width: 230px;
+}
+.forminput submit {
+  padding: .5em;
+}
+
+textarea {
+    padding: .5em;
+}
+
+ul.errorlist{
+  height: 22px;
+  width: 430;
+  left: 26px;
+  bottom: 25px;
+  position: relative;
+  color: red;
+  opacity:.8;
+  font-size:14px;
+}
+
+.signuplink {
+  color: rgb(0,6,152);
+  width: 180px;
+  margin-left:253px;
+  position:absolute;
+  margin-top: 14px;
+
+}

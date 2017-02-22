@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load accounts_extras %}
+{% include "header.html" %}
+<html lang="en">
+	<head>
+
+		<link rel="stylesheet" type="text/css" href="/static/css/storefront.css" />
+		
+	</head>
+	<div class="bodydiv">	
+    <ul class="grid effect-8" id="grid">
+    {% for i in latest_entries %}
+    <li>
+      <div class="grid_4">
+       <div class="imgcontainer">
+        <img src="{{ i.item_picture.url }}" alt="" />
+        <div class="overlayname">{{ i.headline }}</div>
+        <div class="overlayprice">{{ i.price1 }}</div>
+      </div>
+      <div class="textcontainer">
+        <p>{{ i.body_text }}</p>
+      </div>
+      <div class="sellerdiv">
+      	<div class="sellerpic"><a href="/accounts/{{ i.author }}"><img src="{{ i.author.get_profile.get_mugshot_url }}"></a></div> 
+      	<div class="sellerinfo">Sold by <b>{{ i.author }}</b></div>
+      	<div class="hearts"><img src="/static/img/stars.png"></div>
+      	<div class="reviewnum"></div>
+      	<div class="posteddate">Posted {{ i.pub_date|timesince|upto:',' }} ago</div>
+      </div>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+</div>
+
+<script src="http://tympanus.net/Development/GridLoadingEffects/js/masonry.pkgd.min.js"></script>
+<script src="http://tympanus.net/Development/GridLoadingEffects/js/imagesloaded.js"></script>
+<script src="http://tympanus.net/Development/GridLoadingEffects/js/classie.js"></script>
+<script src="/static/js/modernizr.custom.js"></script>
+<script src="http://tympanus.net/Development/GridLoadingEffects/js/AnimOnScroll.js"></script>
+		<script>
+			new AnimOnScroll( document.getElementById( 'grid' ), {
+				minDuration : 0.4,
+				maxDuration : 0.7,
+				viewportFactor : 0.2
+			} );
+		</script>
+	
+</html>

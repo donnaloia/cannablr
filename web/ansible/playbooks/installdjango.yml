@@ -1,0 +1,35 @@
+- hosts: localhost
+  tasks:
+   - name: Install Django
+     pip: name=Django
+   - name: Install Userena
+     pip: name=django-userena
+   - name: Install Django Messages
+     pip: name=https://github.com/arneb/django-messages/archive/master.zip
+   - name: Install Django Cities
+     command: pip install -e git+https://github.com/coderholic/django-cities.git@d0163f393e7557914b3f2c6882e740537ca63fd6#egg=django-cities
+   - name: Install Django REST Framework
+     pip: name=djangorestframework
+   - name: Install Django-Resized
+     pip: name=django-resized
+   - name: Update Django Guardian
+     pip: name=django-guardian extra_args='--upgrade'
+   - name: Override Userena forms.py
+     copy: src=../../housekeeping/forms.py dest=/usr/local/lib/python2.7/dist-packages/userena/forms.py
+   - name: Override Userena views.py
+     copy: src=../../housekeeping/views.py dest=/usr/local/lib/python2.7/dist-packages/userena/views.py
+   - name: Copy startup.sh
+     copy: src=../../housekeeping/startup.sh dest=../../startup.sh mode=0755
+
+
+  #  - name: Configure Nginx
+  #    copy: src=/test/nginxconf/newconfig.conf dest=/etc/nginx/sites-enabled/default
+  #    notify:
+  #     - Start Nginx
+
+  # handlers:
+  #  - name: Start Nginx
+  #    service: name=nginx state=started
+
+  #  - name: Restart Nginx
+  #    service: name=nginx state=reloaded

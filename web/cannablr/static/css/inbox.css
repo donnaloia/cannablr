@@ -1,0 +1,183 @@
+body{
+	background-color: #f2f2f2;
+}
+.mailcard {
+	width: 870px;
+	position:relative;
+	padding-top: 5px;
+	padding-bottom: 12px;
+	margin-bottom:15px;
+	background-color:white;
+	-webkit-box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow:    0px 2px 4px 0px rgba(50, 50, 50, 0.3);
+    box-shadow:         0px 2px 4px 0px rgba(50, 50, 50, 0.3);
+
+}
+
+.currentmailheader{
+	text-decoration:none;
+	display:inline-block;
+	color:black;
+}
+
+.replybox {
+  margin-left: 132px;
+  margin-top:26px;
+}
+
+.replylabel{
+  font-family: Lato;
+  font-size:22px;
+  font-weight: bold;
+}
+
+.newbold{
+	font-weight:bold;
+}
+
+.mailcontainer {
+	width:870px;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:50px;
+	margin-top:32px;
+}
+
+.mailcontainerheader {
+	margin-bottom:20px;
+	right:50px;
+	font-family: Lato;
+	font-size: 23px;
+	font-weight:100;
+	position: absolute;
+	top:125px;
+	left:867px;
+	width:200px;
+}
+.mailcontainerheader a {
+	color:gray;
+}
+
+.sender {
+	left: 132px;
+	position: absolute;
+	width: auto;
+	top: 48px;
+	font-family: Lato;
+	font-size:14px;
+	font-weight: bold;
+
+}
+
+
+.senderpic {
+	width:200px;
+	margin-left:30px;
+	top:17px;
+	position:relative;
+
+}
+.senderpic img {
+	width: 74px;
+    border-radius: 50px;
+
+}
+
+.subject {
+	left: 132px;
+	position: absolute;
+	width: auto;
+	top:20px;
+	font-family: Lato;
+	font-size: 22px;
+	font-weight:400;
+}
+
+.subjectnew{
+	left: 132px;
+	position: absolute;
+	width: auto;
+	top:20px;
+	font-family: Lato;
+	font-size: 22px;
+	font-weight:bold;
+
+}
+.subject a {
+	color:black;
+}
+
+.subjectnew a {
+	color:black;
+}
+
+.senttime {
+	right: 55px;
+    position: absolute;
+    width: auto;
+    top: 30px;
+    font-size: 12px;
+    font-family: Lato;
+    font-weight:100;
+    color: #999999;
+}
+
+.trashcan {
+	width:29px;
+	height:29px;
+	position: absolute;
+	top: 25px;
+	right:10px;
+	background: url(/static/img/trash3.png) no-repeat;
+}
+
+
+.trashcan:hover {
+	opacity: 1;
+	-webkit-transition: opacity 1.9s;
+	-moz-transition:    opacity 1.9s;
+	-o-transition:      opacity 1.9s;
+	background: url(/static/img/trash4.png) no-repeat;
+}
+
+.trashcan img {
+	width:29px;
+}
+
+.messagepreview {
+	top:-2px;
+	width:680px;
+	margin-left:132px;
+	position: relative;
+}
+
+.messagepreview a{
+	color:black;
+}
+
+.ads {
+	height: 600px;
+	display: none;
+	width: 120px;
+	position: absolute;
+	top: 155px;
+	left:1040px;
+}
+
+.maildateheader {
+	width:auto;
+	font-weight: bold;
+	margin-left: 32px;
+    margin-bottom: 15px;
+    margin-top:21px;
+    font-size: 20px;
+    font-family: Lato;
+    color: #999999;
+    font-weight:100;
+}
+
+
+.sadmail {
+	position: absolute;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load inbox %}
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/css/header.css">
+<div id="container">
+	<div id="header">
+		<div class="headercontainer">
+			<h1 id="logo">
+				<a href="/storefront/"><img src="/static/img/dealrlogo.png" /></a>
+			</h1>
+			<ul id="head-navigation">
+				<li><a href="/storefront/">Dashboard</a></li>
+				<li><a class="{% if request.path == '/messages/inbox/' %}current{% endif %}"<a href="/messages/">{% if message_list == 0 %}Messages{% else %}<div id="mailalert"> Messages {{ message_list }}</div>{% endif %}</a></li>
+				<li><a class="{% if request.path == '/storefront/' %}current{% endif %}"<a href="/storefront/">Discover</a></li>
+				<li><a class="{% if request.path == '/sell/' %}current{% endif %}"<a href="/sell/">Sell</a></li>
+
+			</ul>
+		</div>
+
+        <nav>
+				<ul>
+					<li class="drop">
+						<div class="dropdownoptions"><i class="fa fa-align-justify"></i></div>
+						<div class="dropdownContain">
+							<div class="dropOut">
+								<ul>
+									{% if user.is_authenticated %}
+									<li><a href="{% url 'userena_profile_detail' user.username %}">My Profile</a></li>
+									<li><a href="{% url 'userena_profile_edit' user.username %}">Edit Profile</a></li>
+									<li><a href="/accounts/password/reset"> Change Password</a></li>
+									<li><a href="/accounts/signout"> Log Out</a></li>
+									{% else %}
+									<li><a href="/accounts/signin">Log in</a></li>  
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</nav>
+
+	</div>
+</div>

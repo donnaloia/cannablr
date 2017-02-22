@@ -1,0 +1,884 @@
+@charset "UTF-8"; /*! normalize.css v2.1.1 | MIT License | git.io/normalize */
+article,
+aside, details, figcaption, figure, footer, header, hgroup, main, nav,
+section, summary {
+    display: block
+}
+
+audio, canvas, video {
+    display: inline-block
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+[hidden] {
+    display: none
+}
+
+html {
+    background: #fff;
+    color: #000;
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+body {
+    margin: 0
+}
+
+a:focus {
+    outline: thin dotted
+}
+
+a:active, a:hover {
+    outline: 0
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0
+}
+
+abbr[title] {
+    border-bottom: 1px dotted
+}
+
+b, strong {
+    font-weight: bold
+}
+
+dfn {
+    font-style: italic
+}
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0
+}
+
+mark {
+    background: #ff0;
+    color: #000
+}
+
+code, kbd, pre, samp {
+    font-family: monospace, serif;
+    font-size: 1em
+}
+
+pre {
+    white-space: pre-wrap
+}
+
+q {
+    quotes: "\201C" "\201D" "\2018" "\2019"
+}
+
+small {
+    font-size: 80%
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sup {
+    top: -0.5em
+}
+
+sub {
+    bottom: -0.25em
+}
+
+img {
+    border: 0
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+figure {
+    margin: 0
+}
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em
+}
+
+legend {
+    border: 0;
+    padding: 0
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0
+}
+
+button, input {
+    line-height: normal
+}
+
+button, select {
+    text-transform: none
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button[disabled], html input[disabled] {
+    cursor: default
+}
+
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box
+}
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+/*! normalize.css v2.1.1 | MIT License | git.io/normalize */
+article,
+aside, details, figcaption, figure, footer, header, hgroup, main, nav,
+section, summary {
+    display: block
+}
+
+audio, canvas, video {
+    display: inline-block
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+[hidden] {
+    display: none
+}
+
+html {
+    background: #fff;
+    color: #000;
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+body {
+    margin: 0
+}
+
+a:focus {
+    outline: thin dotted
+}
+
+a:active, a:hover {
+    outline: 0
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0
+}
+
+abbr[title] {
+    border-bottom: 1px dotted
+}
+
+b, strong {
+    font-weight: bold
+}
+
+dfn {
+    font-style: italic
+}
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0
+}
+
+mark {
+    background: #ff0;
+    color: #000
+}
+
+code, kbd, pre, samp {
+    font-family: monospace, serif;
+    font-size: 1em
+}
+
+pre {
+    white-space: pre-wrap
+}
+
+q {
+    quotes: "\201C" "\201D" "\2018" "\2019"
+}
+
+small {
+    font-size: 80%
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sup {
+    top: -0.5em
+}
+
+sub {
+    bottom: -0.25em
+}
+
+img {
+    border: 0
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+figure {
+    margin: 0
+}
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em
+}
+
+legend {
+    border: 0;
+    padding: 0
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0
+}
+
+button, input {
+    line-height: normal
+}
+
+button, select {
+    text-transform: none
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button[disabled], html input[disabled] {
+    cursor: default
+}
+
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box
+}
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+ul li {
+    margin: 0;
+    padding: 0
+}
+
+section .inner, section .toolbar, .masthead .inner, .masthead .toolbar {
+    padding: 0 3em;
+    margin: 0 auto
+}
+
+@media only screen and (min-width: 799px) {
+    section .inner, section .toolbar, .masthead .inner, .masthead .toolbar {
+        max-width: 940px
+    }
+}
+
+footer nav {
+    margin: 0 auto
+}
+
+@media only screen and (min-width: 799px) {
+    footer nav {
+        max-width: 940px
+    }
+}
+
+section {
+    border-bottom: 1px solid #e8e8e8;
+    padding: 6em 0
+}
+
+img {
+    max-width: 100%
+}
+
+a {
+    color: #23a2d4;
+    text-decoration: none
+}
+
+.logo {
+    background-image: url(logo.png);
+    display: block;
+    height: 0.5em;
+    width: 3em;
+    background-size: cover;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap
+}
+
+::-moz-selection {
+    background-color: #a0d040;
+    color: #fcfdf8;
+    text-shadow: none
+}
+
+::selection {
+    background-color: #a0d040;
+    color: #fcfdf8;
+    text-shadow: none
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    color: #777;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 75%;
+    font-weight: 400;
+    -webkit-transition: font-size 0.2s ease-in;
+    -moz-transition: font-size 0.2s ease-in;
+    transition: font-size 0.2s ease-in
+}
+
+@media only screen and (min-width: 799px) {
+    body {
+        font-size: 100%
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #404956;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: -0.0125em;
+    line-height: 1.25;
+    margin: 0 0 0.5em;
+    text-align: center
+}
+
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+    font-size: 60%;
+    line-height: 0;
+    text-transform: none
+}
+
+h1 {
+    font-weight: 200;
+    font-size: 2.618em
+}
+
+h2 {
+    font-weight: 200;
+    font-size: 2.023em
+}
+
+h3 {
+    font-weight: 500;
+    font-size: 1.618em
+}
+
+h4 {
+    font-weight: 500;
+    font-size: 1.25em
+}
+
+h5 {
+    font-weight: 500;
+    font-size: 1em
+}
+
+h6 {
+    font-weight: 500;
+    font-size: 0.773em;
+    text-transform: uppercase
+}
+
+p {
+    font-size: 1.25em;
+    line-height: 1.6;
+    margin: 0 auto 3em;
+    text-align: center
+}
+
+.masthead {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center
+}
+
+.button {
+    -webkit-font-smoothing: antialiased;
+    border: 0;
+    border-radius: 0.25em;
+    color: #fff;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.0175em;
+    margin-bottom: 1em;
+    padding: 1em;
+    text-shadow: 0 0.125em 0 rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
+    -webkit-transition: background-color 0.2s ease-in, border 0.2s ease-in, color 0.2s ease-in;
+    -moz-transition: background-color 0.2s ease-in, border 0.2s ease-in, color 0.2s ease-in;
+    transition: background-color 0.2s ease-in, border 0.2s ease-in, color 0.2s ease-in
+}
+
+.button:active {
+    position: relative;
+    top: 1px;
+    box-shadow: none
+}
+
+.large {
+    padding: 1.25em 2.5em
+}
+
+.outline {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.4)
+}
+
+.outline:hover {
+    border-color: #fff;
+    color: #fff
+}
+
+.blue {
+    background-color: #3F9E2F;
+    box-shadow: inset 0 -0.125em 0 rgba(0, 0, 0, 0.2)
+}
+
+.blue:hover {
+    background-color: #2198c7
+}
+
+.masthead {
+    background: #404956 url("bg-hero.jpg") no-repeat center fixed
+}
+
+@media only screen and (min-width: 480px) {
+    .masthead .inner {
+        padding: 3em 3em
+    }
+}
+
+@media only screen and (min-width: 799px) {
+    .masthead .inner {
+        padding: 4.5em 3em
+    }
+}
+
+.masthead h1, .masthead p {
+    color: #fff
+}
+
+.masthead p {
+    margin-bottom: 1.5em
+}
+
+.masthead .toolbar {
+    overflow: hidden;
+    padding: 4.5em 3em
+}
+
+.masthead .logo {
+    float: left;
+    margin: 0
+}
+
+.masthead img {
+    bottom: -9em;
+    position: relative;
+    margin: -6em auto 3em
+}
+
+header nav {
+    float: right;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 0.5em;
+    line-height: 0.5em;
+    margin-top: -0.5em
+}
+
+@media only screen and (min-width: 799px) {
+    header nav {
+        font-size: 0.773em
+    }
+}
+
+header nav .button {
+    margin-left: 1em
+}
+
+header nav span {
+    color: rgba(255, 255, 255, 0.4);
+    display: none
+}
+
+@media only screen and (min-width: 480px) {
+    header nav span {
+        display: inline
+    }
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0
+}
+
+footer nav li {
+    display: inline
+}
+
+.content-features ul {
+    font-size: 1em;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0
+}
+
+@media only screen and (min-width: 799px) {
+    .content-features ul {
+        font-size: 0.773em
+    }
+
+    .content-features li {
+        float: left;
+        margin-left: 2.12766%;
+        width: 23.40426%
+    }
+
+    .content-features li:first-child {
+        margin-left: 0
+    }
+}
+
+.content-features i {
+    border-radius: 0.25em;
+    color: #23a2d4;
+    display: block;
+    font-size: 3em;
+    overflow: hidden;
+    text-align: center;
+    padding: 0.5em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.content-mobile {
+    padding-top: 12em
+}
+
+.content-mobile img {
+    display: block;
+    margin: 0 auto -6em
+}
+
+.content-signup {
+    text-align: center
+}
+
+footer {
+    background: #404956 url("bg-hero.jpg") no-repeat center fixed;
+    color: #fff;
+    padding: 3em 0;
+    text-align: center
+}
+
+footer a {
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0 1em
+}
+
+.beta {
+    background: transparent url("bg-hero.jpg") no-repeat center fixed
+}
+
+.beta header {
+    padding: 6em
+}
+
+.beta .logo {
+    margin: 0 auto
+}
+
+.beta .content {
+    background: #fff;
+    margin: 0 auto;
+    max-width: 940px;
+    padding: 3em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.beta .content .ss-form-entry {
+    margin-bottom: 3em
+}
+
+.beta .content .ss-q-title {
+    color: #404956;
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-bottom: 0.5em
+}
+
+.beta .content .ss-q-help {
+    margin-bottom: 1em
+}
+
+.beta .content .ss-required-asterisk {
+    color: #e14b45
+}
+
+.beta .content .ss-choice-item {
+    margin-bottom: 0.5em
+}
+
+.beta .content .required-message {
+    font-size: 0.773em;
+    margin-top: 1em
+}
+
+.beta .content input {
+    padding: 0.5em
+}
+
+.beta .content input[type="submit"] {
+    padding: 1em;
+    -webkit-font-smoothing: antialiased
+}
+
+.beta .content ul {
+    list-style: none;
+    padding: 0
+}
+
+.beta .content li {
+    display: inline;
+    margin-right: 1em
+}
+
+.beta .content .error-message {
+    display: none
+}
+
+.beta .content textarea {
+    width: 100%
+}
+
+.beta footer {
+    background: none
+}
+
+.animated {
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -ms-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s
+}
+
+.animated.hinge {
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -ms-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes tada {
+    0% {
+        -webkit-transform: scale(1)
+    }
+
+    10%, 20% {
+        -webkit-transform: scale(0.9) rotate(-3deg)
+    }
+
+    30%, 50%, 70%, 90% {
+        -webkit-transform: scale(1.1) rotate(3deg)
+    }
+
+    40%, 60%, 80% {
+        -webkit-transform: scale(1.1) rotate(-3deg)
+    }
+
+    100% {
+        -webkit-transform: scale(1) rotate(0)
+    }
+}
+
+@-moz-keyframes tada {
+    0% {
+        -moz-transform: scale(1)
+    }
+
+    10%, 20% {
+        -moz-transform: scale(0.9) rotate(-3deg)
+    }
+
+    30%, 50%, 70%, 90% {
+        -moz-transform: scale(1.1) rotate(3deg)
+    }
+
+    40%, 60%, 80% {
+        -moz-transform: scale(1.1) rotate(-3deg)
+    }
+
+    100% {
+        -moz-transform: scale(1) rotate(0)
+    }
+}
+
+@-o-keyframes tada {
+    0% {
+        -o-transform: scale(1)
+    }
+
+    10%, 20% {
+        -o-transform: scale(0.9) rotate(-3deg)
+    }
+
+    30%, 50%, 70%, 90% {
+        -o-transform: scale(1.1) rotate(3deg)
+    }
+
+    40%, 60%, 80% {
+        -o-transform: scale(1.1) rotate(-3deg)
+    }
+
+    100% {
+        -o-transform: scale(1) rotate(0)
+    }
+}
+
+@keyframes tada {
+    0% {
+        transform: scale(1)
+    }
+
+    10%, 20% {
+        transform: scale(0.9) rotate(-3deg)
+    }
+
+    30%, 50%, 70%, 90% {
+        transform: scale(1.1) rotate(3deg)
+    }
+
+    40%, 60%, 80% {
+        transform: scale(1.1) rotate(-3deg)
+    }
+
+    100% {
+        transform: scale(1) rotate(0)
+    }
+}
+
+.content-features ul:hover .tada, .content-features li:hover .tada {
+    -webkit-animation-name: tada;
+    -moz-animation-name: tada;
+    -o-animation-name: tada;
+    animation-name: tada
+}
+

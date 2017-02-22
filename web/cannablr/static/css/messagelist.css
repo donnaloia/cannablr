@@ -1,0 +1,97 @@
+
+
+
+.mailcontainer{
+    top: 40px;
+    width:400px;
+    height: 100%;
+    width: auto;
+    position: relative;
+
+}
+
+
+.mail {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.0rem;
+  line-height: 1.5;
+  color: #999;
+  font-weight: 800;
+  letter-spacing: 0.1em;  
+  margin: 5px auto;
+  width: 715px;
+  height: 60px;
+  z-index: 100px;
+  padding: 8px;
+  background-color: #F0F0F0;
+  position: relative;
+  border-radius: 6px;
+}
+.mail a:link a:visited a:hover: a:active{
+  font-color: black;
+}
+
+
+.leftprofileimage {
+  width:auto;
+  height: auto;
+
+}
+
+.leftprofileimage img {
+  float: left;
+  max-height: 60px;
+  width: auto;
+  position: absolute;
+  border-radius: 90px;
+  margin: 5, 5, 5, 5;
+}
+
+.sendername {
+  font-color: black;
+  width: 26%;
+  margin-left: 10%;
+  position: absolute;
+  bottom: 50%;
+}
+.sendername a:link {
+  font-color: black;
+}
+.sendername a:visited {
+  font-color: black;
+}
+
+.snippet {
+  bottom: 50%;
+  width: 55%;
+  margin-left:26%;
+  position: absolute;
+}
+
+
+
+.delete {
+  color: #000;
+  position: absolute;
+  right:0;
+  top:50%;
+  height: auto;
+  width: 50px;
+  border-radius: 100px;
+  background-color: #fff;
+  cursor: pointer;
+  z-index: 200;
+  
+  -webkit-transition: all 0.2s;
+}
+  .delete p {
+    font-size: 0.7em;
+    padding: 8px 7px;
+  }
+
+.delete:hover {
+  background-color: #FF988E;
+  color: #fff;
+  
+  -webkit-transition: all 0.2s;
+}

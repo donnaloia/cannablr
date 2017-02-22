@@ -1,0 +1,42 @@
+
+{% include "header.html" %}
+{% load i18n %}
+<link rel="stylesheet" type="text/css" href="/static/css/reviewseller.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<div class="background2div">
+    <div class="backgroundiv">
+    <div class="formdiv">
+        <div class="selltitle">Review {{ theuser }}</div>
+        <div class="sellsubtitle">Describe your experience with this seller</div>
+        <form action="" enctype="multipart/form-data" method="post" data-parsley-validate>
+        {% csrf_token %}
+
+        <div class="linecontainer">Rate User<div class="forminput">
+
+<span class="star-rating">
+  <input type="radio" value="1" id="id_stars_0" name="stars"><i></i>
+  <input type="radio" value="2" id="id_stars_1" name="stars"><i></i>
+  <input type="radio" value="3" id="id_stars_2" name="stars"><i></i>
+  <input type="radio" value="4" id="id_stars_3" name="stars"><i></i>
+  <input type="radio" value="5" id="id_stars_4" name="stars"><i></i>
+</span>
+
+        </div></div>
+        <div class="linecontainer">Comments<div class="forminput">{{ form.comment }}</div></div>
+        <div class="linecontainer"><div class="forminputbutton"><input type="submit" value="Submit"></div></div>
+        </form>
+    </div>
+    </div>
+</div>
+<form action="" enctype="multipart/form-data" method="post">
+ 
+  {% csrf_token %}
+  <fieldset>
+    <legend>{% trans "Review User" %}</legend>
+    {{ form.stars }}
+    {{ form.comment }}
+  </fieldset>
+  <input type="submit" value="{% trans "Save changes" %}" />
+</form>

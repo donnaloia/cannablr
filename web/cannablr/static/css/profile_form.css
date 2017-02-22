@@ -1,0 +1,107 @@
+.backgroundiv {
+  background-image: url(/static/img/bg-hero.jpg);
+  width: 100%;
+  position: relative;
+  padding-top: 100px;
+  height: 426px;
+  margin-top: -52px;
+}
+.background2div {
+    background-color: black;
+    background-repeat: repeat;
+    height: 1300px;
+    padding-bottom: 100px;
+}
+.linecontainer {
+  width: 486px;
+  display: inline-block;
+  margin-left: 68px;
+}
+.formdiv {
+  padding-top: 60px;
+  float: center;
+  background-color: white; 
+  height: 1080px;
+  margin: 0 auto;
+  border-radius: 3px;
+  width: 632px;
+}
+.selltitle {
+  font-family: futura;
+  font-size: 28px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.sellsubtitle {
+  font-family: futura;
+  font-size: 16px;
+  color: gray;
+  text-align: center;
+  padding-bottom: 55px;
+  margin: 0 auto;
+  width: 526px;
+}
+.forminput {
+  float:right;
+  #margin-left: 338px;
+  margin-bottom: 32px;
+
+}
+
+.forminput2 {
+  float:right;
+  width: 228px;
+  margin-bottom: 32px;
+}
+
+.forminput input {
+  padding: .5em;
+  width: 230px;
+}
+.forminput submit {
+  padding: .5em;
+}
+
+textarea {
+    padding: .5em;
+}
+
+
+
+input.parsley-success,
+select.parsley-success,
+textarea.parsley-success {
+  color: #468847;
+  background-color: #DFF0D8;
+  border: 1px solid #D6E9C6;
+}
+
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error {
+  color: #B94A48;
+  background-color: #F2DEDE;
+  border: 1px solid #EED3D7;
+}
+
+.parsley-errors-list {
+  margin: 2px 0 3px 0;
+  padding: 0;
+  list-style-type: none;
+  font-size: 0.9em;
+  line-height: 0.9em;
+  opacity: 0;
+  -moz-opacity: 0;
+  -webkit-opacity: 0;
+
+  transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -ms-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+}
+
+.parsley-errors-list.filled {
+  opacity: 1;
+}
+
