@@ -66,9 +66,9 @@ $ docker-compose up
 Now What?
 ```sh
 $ docker-compose ps
-$ docker inspect <containername>
+$ docker inspect --format '{{ .NetworkSettings.IPAddress }}' parentserver
 ```
-Curl or visit this ip address in your browser - the web app should be running and fully functional!
+Curl or visit this ip address in your browser (port 8000) - the web app should be running and fully functional!
 
 ### Todos
 
