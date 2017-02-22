@@ -10,12 +10,23 @@
  - 1 Messaging microservice written in Flask
  - 1 User/Profile microservice written in Flask
 
-# DevOpsy Stuff:
+# Build/CI/Deployment Layout:
+
+When this project was live, the path to production looked like the following:
+ - Each service has it's own Github Repository
+ - When a pull request is initiated against any one of the repositories, a new build is triggered in CircleCI
+ - If all tests pass, the pull request is merged into master
+ - Github service hooks notify Docker Hub to build a new Docker image.
+ - Web hooks running on EC2 detect when a new image is available on Docker Hub.  
+ - If a new image is recognized, it is pulled down from Docker Hub and automatically deployed to the correct AWS instance via Docker.
+
+Since this project is no longer live, I made some changes to the above steps outlined below:
+ - The entire project (consisting of all the microservices and build/deploy infastructure) is now contained within a single repository.
  - All the services above are mapped out in a docker-compose.yml with some small tweaks that enable a single-click production deploy.
- -  Included is the Dockerrun.aws.json used to single-click deploy to AWS Elastic Beanstalk
- - Extensive use of environment variables and automation scripting to handle deployment from scratch (ie: deploying/configuring postgres with postGIS, populating database with location data, linking services, etc) 
- - A pull request results in a new build being triggered on circleCI, if the build is greenlit, the pull request is merged into master and a new image is pushed to Dockerhub.
- - When this project was live in AWS, I had webhooks that would trigger an automated deploy to AWS when a new image was detected on Dockerhub
+ - Included is the Dockerrun.aws.json used to single-click deploy to AWS Elastic Beanstalk
+ - Extensive use of environment variables and automation scripting to handle deployment from scratch (ie: deploying/configuring postgres with postGIS, populating database with location data, setting permissions, linking services, etc.)
+ - Using Ansible in place of pip to install application dependencies
+
 
 # Open Source Tech
 cannablr uses a number of open source projects to work properly
@@ -25,13 +36,14 @@ cannablr uses a number of open source projects to work properly
 * [Userena] - a Django library for custom user profiles/permissions
 * [Twitter Bootstrap] - great UI boilerplate for modern web apps
 * [masonry.js] - a js library for vertically positioning UI elements
+* [Docker] - containers for deploying applications
 
 
 ### Instructions
 
 Cannablr requires Docker to run.
 
-Clone the repo and let Docker work its magic.
+Clone the repo and it's as simple as docker-compose up.
 
 ```sh
 $ git clone https://github.com/donnaloia/cannablr.git
@@ -80,7 +92,7 @@ Curl or visit this ip address in your browser - the web app should be running an
    [userena]: <https://github.com/bread-and-pepper/django-userena>
    [masonry.js]: <http://masonry.desandro.com/>
    [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
+   [Docker]: <http://docker.com>
 
    [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
    [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
