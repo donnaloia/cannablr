@@ -5,7 +5,7 @@
  - 1 Authentication microservice written in Flask (custom token-based authentication)
  - 1 Redis service (where temp auth tokens are stored) 
  - 1 Nginx Load Balancer (serving the 2 parent services below)
-  - 2 Parent server apps written in Django (Where most of the backend logic happens - pulls data from various API's into one place) 
+ - 2 Parent server apps written in Django (Where most of the backend logic happens - pulls data from various API's into one place) 
  - 1 Postgres service 
  - 1 Messaging microservice written in Flask
  - 1 User/Profile microservice written in Flask
