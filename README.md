@@ -10,7 +10,7 @@
  - 1 Messaging microservice written in Flask
  - 1 User/Profile microservice written in Flask
 
-[![N|Solid](https://raw.github.com/donnaloia/cannablr/master/web/housekeeping/Drawing.png)](https://raw.github.com/donnaloia/cannablr/master/web/housekeeping/Drawing.png)
+[![N|Solid](https://raw.github.com/donnaloia/cannablr/master/parentserver/housekeeping/Drawing.png)](https://raw.github.com/donnaloia/cannablr/master/web/housekeeping/Drawing.png)
 
 # Build/CI/Deployment Layout:
 
