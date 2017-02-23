@@ -23,11 +23,12 @@ When this project was live, the path to production looked like the following:
  - If a new image is recognized, it is pulled down from Docker Hub and automatically deployed to the correct AWS instance via Docker.
 
 Since this project is no longer live, I made some changes to the above steps outlined below:
- - The entire project (consisting of all the microservices and build/deploy infastructure) is now contained within a single repository.
+ - The entire project (consisting of all the microservices and build/deploy infrastructure) is now contained within a single repository.
  - All the services above are mapped out in a docker-compose.yml with some small tweaks that enable a single-click production deploy.
  - Included is the Dockerrun.aws.json used to single-click deploy to AWS Elastic Beanstalk
  - Extensive use of environment variables and automation scripting to handle deployment from scratch (ie: deploying/configuring postgres with postGIS, populating database with location data, setting permissions, linking services, etc.)
  - Using Ansible in place of pip to install application dependencies
+ - Static assetts were moved from an S3 bucket to the repository itself
 
 
 # Open Source Tech

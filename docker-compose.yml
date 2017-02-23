@@ -12,7 +12,7 @@ authserver:
 parentserver:
   container_name: parentserver
   restart: always
-  build: ./web
+  build: ./parentserver
   expose:
     - "8000"
   links:
@@ -42,3 +42,14 @@ redis:
   ports:
     - "6379:6379"
 
+nginx:
+  restart: always
+  build: ./nginx/
+  ports:
+    - "80:80"
+  volumes:
+    - /www/static
+  volumes_from:    
+    - parentserver
+  links:
+    - parentserver:parentserver
