@@ -19,11 +19,8 @@ parentserver:
     - postgres:postgres
     - authserver:authserver
   volumes:
-    - /usr/src/app
-    - /usr/src/app/static
+    - /root/cannablr/cannablr/static
   env_file: .env
-  environment:
-    DEBUG: 'true'
   command: ./startup.sh
 
 postgres:
@@ -43,6 +40,7 @@ redis:
     - "6379:6379"
 
 nginx:
+  container_name: nginx
   restart: always
   build: ./nginx/
   ports:

@@ -16,6 +16,8 @@
      pip: name=django-guardian extra_args='--upgrade'
    - name: Install Gunicorn
      pip: name=gunicorn
+   - name: Install Whitenoise
+     pip: name=whitenoise
    - name: Override Userena forms.py
      copy: src=../../housekeeping/forms.py dest=/usr/local/lib/python2.7/dist-packages/userena/forms.py
    - name: Override Userena views.py

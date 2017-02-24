@@ -49,6 +49,8 @@ RUN mkdir -p /root/nginxconf
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 WORKDIR /root/cannablr/
 COPY ./ ./
+RUN chmod -R 777 ../
+
 
 ###########################################################
 # Run the Playbook which will install Django
