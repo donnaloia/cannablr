@@ -1,0 +1,84 @@
+{% include "header.html" %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+{% load i18n %}
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/css/message_form.css">
+    <div id="container">
+        <div id="header">
+            <h1 id="logo">
+                <a href="#"><img src="/static/img/dealrlogo.png" /></a>
+            </h1>
+            <ul id="jewel-container">
+                <li class="jewel requests">
+                    <a href="#"></a>
+                </li>
+                <li class="jewel messages">
+                    <a href="#"></a>
+                </li>
+                <li class="jewel notifications">
+                    <a href="#"></a>
+                </li>
+            </ul>
+            <ul id="head-navigation">
+                <li><a href="#" class="current">Dashboard</a></li>
+                <li><a href="#">Messages</a></li>
+                <li><a href="#">Discover</a></li>
+                <li><a href="#">Sell</a></li>
+
+            </ul>
+
+            <div class="searchandprofilepic">
+            <nav>
+                {% if user.is_authenticated %}
+                <ul>
+                    <li class="drop">
+                        <div class="user-avatar">
+                            <img src="{{ user.get_profile.get_mugshot_url }}" alt=""" />
+                        </div>
+                        <div class="dropdownContain">
+                            <div class="dropOut">
+                                <ul>
+                                    <li><span aria-hidden="true" class="icon-envelope-alt"></span><a href="{% url 'userena_profile_detail' user.username %}">My Profile</a></li>
+                                    <li><span aria-hidden="true" class="icon-user"></span> <a href="{% url 'userena_profile_edit' user.username %}">Edit Profile</a></li>
+                                    <li><span aria-hidden="true" class="icon-cog"></span><a href="/accounts/password/reset"> Change Password</a></li>
+                                    <li><span aria-hidden="true" class="icon-off"></span><a href="/accounts/signout"> Log Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                {% else %}
+                    <li><a href="/accounts/signin">Log in</a></li>  
+                {% endif %}
+            </nav>
+
+            <div id="head-search">
+                <form id="searchform">
+                    <input placeholder="Find Cannabis">
+                    <input type="button" class="btn">
+                </form>
+            </div>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+{% block content_title %}<h2>{% trans "Compose" %}</h2>{% endblock %}
+
+
+  <form action="" method="post" id="compose_message_form" class="sign-up">
+  {% csrf_token %}
+    <h1 class="sign-up-title">To {{ recipients }}</h1>
+    <div class = "hidden">{{ form.to }}</div>
+    <textarea class="sign-up-input" cols="60" id="id_body" name="body" rows="10">
+</textarea>
+     <input type="submit" name="send" class="sign-up-button" value="{% trans "Send Message" %}" />
+</form>
+
+     </div>
+

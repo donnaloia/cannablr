@@ -1,3 +1,20 @@
+
+parentserver:
+  container_name: parentserver
+  restart: always
+  build: ./parentserver
+  expose:
+    - "8000"
+  links:
+    - postgres:postgres
+    - authserver:authserver
+    - locationserver:locationserver
+  volumes:
+    - /root/cannablr/cannablr/static
+    - /root/cannablr/cannablr/media
+  env_file: .env
+  command: ./startup.sh
+
 authserver:
   container_name: authserver
   restart: always
@@ -9,17 +26,15 @@ authserver:
   environment:
     DEBUG: 'true'
 
-parentserver:
-  container_name: parentserver
+locationserver:
+  container_name: locationserver
   restart: always
-  build: ./parentserver
+  build: ./locationserver
   expose:
     - "8000"
   links:
     - postgres:postgres
     - authserver:authserver
-  volumes:
-    - /root/cannablr/cannablr/static
   env_file: .env
   command: ./startup.sh
 

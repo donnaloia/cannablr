@@ -10,6 +10,13 @@ server {
     charset utf-8;
 
 
+    location /static {      
+        alias /root/cannablr/cannablr/static;    
+    }
+
+    location /media {      
+        alias /root/cannablr/cannablr/media;    
+    }
 
 
     location / {
@@ -23,7 +30,6 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
     }
-
 
 
 }

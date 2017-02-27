@@ -22,13 +22,13 @@ from userena import settings as userena_settings
 from guardian.decorators import permission_required_or_403
 from django.contrib.auth.models import User
 from django.db.models import Avg
-from cities.models import PostalCode
 from accounts.forms import UserReviewForm
 from accounts.models import Entry
 from accounts.models import UserReview
 from accounts.models import MyProfile
+from accounts.api_consumer import calculate_postalcodes
 
-
+import requests
 import warnings
 
 class ExtraContextTemplateView(TemplateView):
@@ -76,6 +76,20 @@ class ProfileListView(ListView):
         profile_model = get_profile_model()
         queryset = profile_model.objects.get_visible_profiles(self.request.user).select_related()
         return queryset
+
+
+def cannablr_register(email, password):
+    url="http://authserver:5000/account"
+    params ={'email':email, 'password':password}
+    data = requests.post(url=url, params=params)
+    if data.status_code == requests.codes.ok:
+        output = data.json()
+        #pull users email from token
+        string ="account registered"
+        return string
+    else:
+        None
+
 
 @secure_required
 def signup(request, signup_form=SignupForm,
@@ -126,6 +140,8 @@ def signup(request, signup_form=SignupForm,
     if request.method == 'POST':
         form = signup_form(request.POST, request.FILES)
         if form.is_valid():
+            cannablr_register(form.cleaned_data['email'], form.cleaned_data['password1'])
+
             user = form.save()
 
             # Send the signup complete signal
@@ -696,10 +712,7 @@ def profile_edit(request, username, edit_profile_form=EditProfileForm,
 
         if form.is_valid():
             cleanzipcode= form.cleaned_data['zipcode']
-            nearestzips = PostalCode.objects.distance(PostalCode.objects.get(code=cleanzipcode).location).order_by('distance')[:12]
-            
-            zip_codes = list(nearestzips.values_list('code', flat=True))
-            print zip_codes
+            zip_codes=calculate_postalcodes(cleanzipcode)
             profile=form.save(commit=False)
             profile.nearbyzips1 = zip_codes[0]
             profile.nearbyzips2 = zip_codes[1]

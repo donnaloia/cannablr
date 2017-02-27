@@ -1,0 +1,63 @@
+{% load i18n %}
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/css/header.css">
+<div id="container">
+	<div id="header">
+		<h1 id="logo">
+			<a href="/storefront/"><img src="/static/img/dealrlogo.png" /></a>
+		</h1>
+		<ul id="jewel-container">
+			<li class="jewel requests">
+				<a href="#"></a>
+			</li>
+			<li class="jewel messages">
+				<a href="#"></a>
+			</li>
+			<li class="jewel notifications">
+				<a href="#"></a>
+			</li>
+		</ul>
+		<ul id="head-navigation">
+			<li><a href="/storefront/" class="current">Dashboard</a></li>
+			<li><a href="/messages/">Messages</a></li>
+			<li><a href="/storefront/">Discover</a></li>
+			<li><a href="/sell/">Sell</a></li>
+
+		</ul>
+
+		<div class="searchandprofilepic">
+			<nav>
+				{% if user.is_authenticated %}
+				<ul>
+					<li class="drop">
+						<div class="user-avatar">
+							<img src="{{ user.get_profile.get_mugshot_url }}" class="nav" alt=""" />
+						</div>
+						<div class="dropdownContain">
+							<div class="dropOut">
+								<ul>
+									<li><span aria-hidden="true" class="icon-envelope-alt"></span><a href="{% url 'userena_profile_detail' user.username %}">My Profile</a></li>
+									<li><span aria-hidden="true" class="icon-user"></span> <a href="{% url 'userena_profile_edit' user.username %}">Edit Profile</a></li>
+									<li><span aria-hidden="true" class="icon-cog"></span><a href="/accounts/password/reset"> Change Password</a></li>
+									<li><span aria-hidden="true" class="icon-off"></span><a href="/accounts/signout"> Log Out</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+				{% else %}
+				<li><a href="/accounts/signin">Log in</a></li>  
+				{% endif %}
+			</nav>
+
+			<div id="head-search">
+
+				<form id="searchform">
+				    <span>Find Cannabis</span>
+					<input placeholder="Find Cannabis">
+					<input type="button" class="btn">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

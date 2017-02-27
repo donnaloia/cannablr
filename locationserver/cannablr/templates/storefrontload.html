@@ -1,0 +1,74 @@
+
+{% load accounts_extras %}
+{% load round_numbers %}
+
+<div class="bodydiv">
+	<ul class="grid effect-3" id="grid">
+    {% for i in latest_entries %}
+    <li>
+      <div class="grid_4">
+       <div class="imgcontainer">
+        <img src="{{ i.item_picture.url }}" alt="" />
+        <div class="overlayname">{{ i.headline }}</div>
+        <div class="overlayprice">{{ i.price1 }}</div>
+      </div>
+      <div class="textcontainer">
+        <p>{{ i.body_text }}</p>
+      </div>
+      <div class="sellerdiv">
+      	<div class="sellerpic"><a href="/accounts/{{ i.author }}"><img src="{{ i.author.get_profile.get_mugshot_url }}"></a></div> 
+      	<div class="sellerinfo">Sold by <a href="/accounts/{{ i.author }}"><b>{% if i.author.my_profile.storename %} {{ i.author.my_profile.storename }} {% else %} {{ i.author }} {% endif %}</b></a></div>
+      	<div class="hearts">{{ i.author.my_profile.reviewavg|roundnumbers|safe }}</div>
+      	<div class="reviewnum"></div>
+      	<div class="posteddate">Posted {{ i.pub_date|timesince|upto:',' }} ago</div>
+      </div>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+<script>
+      new AnimOnScroll( document.getElementById( 'grid' ), {
+        minDuration : 0.4,
+        maxDuration : 0.7,
+        viewportFactor : 0.2
+      } );
+    </script>
+<script>
+
+function filter(type) {
+  $.get("/storefront/?filter="+type, function(data) {
+     var $data = data;
+     $('.grid').css('margin-top', 110);
+     $('.grid').children().remove();
+     $('.grid').append( $data ).masonry( 'appended', $data, true ).masonry( 'layout' ); 
+  });
+}
+
+$("#strains").unbind().click(function () { 
+  filter("strains");
+  $('#strains').attr('style', 'font-weight: bold').css('color', '#FF0'); 
+  $('#concentrates').attr('style', 'font-weight: normal');;
+  return false;
+});
+
+
+$("#concentrates").unbind().click(function () { 
+  filter("concentrates");
+  $('#concentrates').attr('style', 'font-weight: bold').css('color', '#FF0');
+  $('#strains').attr('style', 'font-weight: bold');
+  $('#edibles').attr('style', 'font-weight: bold');
+  return false;
+});
+
+$("#edibles").unbind().click(function () { 
+  filter("edibles");
+  $('#edibles').attr('style', 'font-weight: bold').css('color', '#FF0');
+  $('#concentrates').attr('style', 'font-weight: bold');;
+  $('#strains').attr('style', 'font-weight: bold')
+  return false;
+});
+</script>
+</div>
+
+

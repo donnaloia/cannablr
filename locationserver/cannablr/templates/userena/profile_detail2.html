@@ -1,0 +1,30 @@
+{% include "header.html" %}
+{% load i18n %}
+<link rel="stylesheet" type="text/css" href="/static/css/profile_detail.css">
+<div class="maincontainer">
+	<div class="widget">
+		<div class="cover">
+			<div class="coveroverlay">
+			</div>
+		</div>
+		<img src="{{ profile.user.get_profile.get_mugshot_url }}" class="photo" />
+		<h4>{{ profile.user.get_full_name }}</h4>
+		<center>
+			<img src="/static/img/starrating.jpg">
+		</center>
+
+
+
+		<h2>Medical Marijuana Dispensary</h2>
+		<h3>Portland, OR</h3>
+		<div class="buttons">
+			<a href="/messages/compose/{{ profile.user }}" class="btn btn-primary custom-button red-btn">Message Me</a>
+			<a href="#" class="btn btn-primary custom-button green-btn">Make An Offer</a>
+		</div>
+		<ul>
+			<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fa fa-xing"></i></a></li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,254 @@
+<!doctype html>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://tympanus.net/Development/GridLoadingEffects/js/masonry.pkgd.min.js"></script>
+<script src="http://tympanus.net/Development/GridLoadingEffects/js/imagesloaded.js"></script>
+
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dealr | {{ profile.user.get_full_name }}</title>
+<meta name="description" content="Documentation and reference library for ZURB Foundation. JavaScript, CSS, components, grid and more."/>
+<link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
+<meta name="author" content="ZURB, inc. ZURB network also includes zurb.com"/>
+<meta name="copyright" content="ZURB, inc. Copyright (c) 2014"/>
+<link rel="stylesheet" href="/static/css/profile_listview.css"/>
+<link href="/static/webfonts/ss-junior.css" rel="stylesheet" />
+</head>
+<body>
+<div class="row">
+<div class="large-12 columns">
+ 
+<div class="row">
+<div class="large-12 columns">
+<nav class="top-bar" data-topbar>
+<ul class="title-area">
+ 
+<li class="name">
+<h1><a href="/storefront/">cannablr</a></h1>
+</li>
+<li class="toggle-topbar menu-icon">
+<a href="#"><span>menu</span></a>
+</li>
+</ul>
+<section class="top-bar-section">
+ 
+<ul class="right">
+                    <li class="divider"></li>
+                    <li class="has-dropdown">
+                    <a href="#">Menu</a>
+                    <ul class="dropdown">
+                        <li><label>Strains</label></li>
+                        <li class="has-dropdown">
+                        <a href="#">OG Kush</a>
+                        </li>
+                        <li>
+                        <a href="#">Lemon Haze</a>
+                        </li>
+                        <li>
+                        <a href="#">White Widow</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><label>Concentrates</label></li>
+                        <li>
+                        <a href="#">OG Shatter</a>
+                        </li>
+                        <li>
+                        <a href="#">Lemon Diesel Hash</a>
+                        </li>
+                        <li>
+                        <a href="#">Hydro Hash</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><label>Edibles</label></li>
+                        <li>
+                        <a href="#">Brownie</a>
+                        </li>
+                        <li>
+                        <a href="#">THC Soda</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                        <a href="/accounts/{{ profile.user.username }}/listview/">See all →</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="has-dropdown">
+                    <a href="#">Directory</a>
+                    <ul class="dropdown">
+                        <li>
+                        <a href="/storefront/">Dashboard</a>
+                        </li>
+                        <li>
+                        <a href="/messages/">Messages</a>
+                        </li>
+                        <li>
+                        <a href="/storefront/">Discover</a>
+                        </li>
+                        <li>
+                        <a href="/sell/">Sell</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="has-dropdown">
+                    <a href="#">Options</a>
+                    <ul class="dropdown">
+                        <li>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'userena_profile_detail' user.username %}">My Profile</a>
+                        </li>
+                        <li>
+                        <a href="{% url 'userena_profile_edit' user.username %}">Edit Profile</a>
+                        </li>
+                        <li>
+                        <a href="/accounts/password/reset">Change Password</a>
+                        </li>
+                        <li>
+                        <a href="/accounts/signout">Sign Out</a>
+                        {% else %}
+                        <a href="/accounts/signin/">Sign In</a>
+                        {% endif %}
+                        </li>
+                    </ul>
+                    </li>
+                </ul>
+</section>
+</nav> 
+</div>
+</div> 
+<div class="row">
+ 
+<div class="large-4 small-12 columns">
+{% if profile.coverpic %}<img src="{{ profile.coverpic.url }}" class="photo" />{% else %}<img src="{{ profile.user.get_profile.get_mugshot_url }}" class="photo" />{% endif %}
+<div class="hide-for-small panel">
+  <div class="storetitle"><i class="ss-icon">store</i><p>{{ profile.user.get_full_name }}</p></div>
+  <div class="storeaddress"><i class="ss-icon">map</i><p>{{ profile.streetaddress }}</p></div>
+  <div class="storephone"><i class="ss-icon">phone</i><p>{{ profile.phone }}</p></div>
+  <div class="storewebsite"><i class="ss-icon">globe</i><p>www.canabo.com</p></div>
+  <div class="storedelivery"><i class="ss-icon">truck</i><p>{% if profile.deliveryoption = True %}We Deliver{% else %}No Deliveries{% endif %}</p></div>
+<h5 class="subheader">Our doors opened in the summer of 2005.  We have every strain imaginable at great prices!</h5>
+</div><a href="#">
+<div class="panel callout radius">
+<h6>CURRENT SPECIALS:  THC BROWNIES 2/$5 </h6>
+</div></a>
+</div> 
+ 
+<div class="large-8 columns">
+<div class="row2">
+
+<div class="CSSTableGenerator" >
+<table >
+    <tr>
+    <td>Name</td>
+    <td>Price 1</td>
+    <td>Price 2</td>
+    <td>Price 3</td>
+    <td>Price 4</td>
+    <td>Price 5</td>
+    </tr>
+    {% for i in fullsalelist %}
+    <tr>
+    <td>{{ i.headline }}{% if pageowner %}<a href="" class="delete_button" id="{{ i.headline }}"></a>{% endif %}</td>
+    <td>{{ i.price1 }}</td>
+    <td>{{ i.price2 }}</td>
+    <td>{{ i.price3 }}{% if not i.price3 %} n/a {% endif %}</td>
+    <td>{{ i.price4 }}{% if not i.price4 %} n/a {% endif %}</td>
+    <td>{{ i.price5 }}{% if not i.price5 %} n/a {% endif %}</td>
+    </tr>
+    {% endfor %}    
+</table>
+</div>
+</div>
+</div>
+
+
+<div class="sellerfeedback">Seller Feedback<div class="commentbutton">View All  |  <a href="#" class="exposeform">Add Review</a></div></div>
+
+<div class="hiddenreviewform">
+<form action="" enctype="multipart/form-data" method="post" data-parsley-validate>
+    {% csrf_token %}
+    <div class="linecontainer">Rate User<div class="forminput">
+    <span class="star-rating">
+    <input type="radio" value="1" id="id_stars_0" name="stars"><i></i>
+    <input type="radio" value="2" id="id_stars_1" name="stars"><i></i>
+    <input type="radio" value="3" id="id_stars_2" name="stars"><i></i>
+    <input type="radio" value="4" id="id_stars_3" name="stars"><i></i>
+    <input type="radio" value="5" id="id_stars_4" name="stars"><i></i>
+    </span>
+    <div class="linecontainer">Comments<div class="forminput">{{ form.comment }}</div></div>
+    <div class="submitbutton"><div class="forminputbutton"><input type="submit" value="Submit"></div></div>
+</form>
+</div>
+</div>
+</div>
+{% for i in userreviews %} 
+<div class="reviewrow">
+
+<div class="commentpanel">
+
+<div class="reviewerpic"><img src="{{ i.author.get_profile.get_mugshot_url }}"></div>
+<div class="authordiv">
+<strong>Reviewed by {{ i.author }}</strong>
+<BR>
+<div class="reviewdate">October 3rd, 2014</div>
+<div class="starcontainer"><div class="stars"><img src="/static/img/stars.png"></div> <div class="babistars">{{ i.stars }} / 5 stars</div></div> <div class="responddiv">Send Message</div>
+<hr>
+<div class="reviewcomment">{{ i.comment }}</div>
+</div>
+</div>
+
+</div>
+{% endfor %} 
+<footer class="footerpanel"></div>
+</div>
+</div>
+</div> 
+
+
+<script>
+$(function(){
+
+    var $container = $('.row2');
+    $container.imagesLoaded( function() {
+        $container.masonry();
+    });
+    
+    
+});
+</script>
+<script>
+    $(document).ready(function() {
+        $(".hiddenreviewform").hide();
+        $('.exposeform').click(function() {
+                $(".hiddenreviewform").show(300)
+                return false;
+                
+         
+
+        });
+    });
+</script>
+<script type="text/javascript">
+    var my_app = {
+      username: "{{ profile.user.username }}"  
+    };
+</script>
+<script>
+ $(document).ready(function() {
+    $(".delete_button").click(function() {
+        var entryname = $(this).attr('id');
+        $.ajax({
+            type: "POST",
+            url: "/accounts/" + my_app.username + "/listview/",
+            data: {'entryname': entryname, csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+        location.reload()
+        return false;
+    });
+});
+</script>
+</body>
+</html>

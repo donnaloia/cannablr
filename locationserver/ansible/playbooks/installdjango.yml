@@ -1,0 +1,19 @@
+- hosts: localhost
+  tasks:
+   - name: Install Django
+     pip: name=Django
+   - name: Install Django Cities
+     command: pip install -e git+https://github.com/coderholic/django-cities.git@d0163f393e7557914b3f2c6882e740537ca63fd6#egg=django-cities
+   - name: Install Django-Resized
+     pip: name=django-resized
+   - name: Update Django Guardian
+     pip: name=django-guardian extra_args='--upgrade'
+   - name: Install Gunicorn
+     pip: name=gunicorn
+   - name: Install Whitenoise
+     pip: name=whitenoise
+   - name: Install requests
+     pip: name=requests
+   - name: Copy startup.sh
+     copy: src=../../housekeeping/startup.sh dest=../../startup.sh mode=0755
+

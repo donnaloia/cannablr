@@ -1,0 +1,113 @@
+{% include "header.html" %}
+<title>Dealr | Sell Goodies</title>
+{% load i18n %}
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/reset.css"> -->
+<link rel="stylesheet" type="text/css" href="/static/css/sell.css">
+<link rel="stylesheet" type="text/css" href="/static/css/fontawesome.min.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/parsley.js"></script>
+
+<div class="background2div">
+	<div class="backgroundiv">
+    <div class="formdiv">
+    	<div class="selltitle">Sell Goodies</div>
+        <form action="" enctype="multipart/form-data" method="post" data-parsley-validate>
+ 
+        {% csrf_token %}
+        <form action="" method="post">
+        <div class="linecontainer">What are you selling?<font color="red"> *</font><div class="forminput">{{ form.headline }}</div>
+        <div class="suggest1">e.g. White Widow</div>
+        </div>
+        <div class="checkmark1"><img src="/static/img/greenmark.png"></div>
+        <div class="linecontainer">Describe your product<font color="red"> *</font><div class="forminput">{{ form.body_text }}</div>
+        <div class="suggest2">Describe in detail what makes this product unique.  </div>
+        <div class="suggest7">250 character limit</div>
+        </div>
+        <div class="checkmark2"><img src="/static/img/greenmark.png"></div>
+        <div class="linecontainer">Choose Category<font color="red"> *</font><div class="forminput2">{{ form.entrytype }}</div></div>
+        <div class="checkmark3"><img src="/static/img/greenmark.png"></div>
+        <div class="linecontainer">List a price<font color="red"> *</font><div class="forminput">{{ form.price1 }}</div>
+        <div class="suggest3">e.g. $12/gram</div>
+        </div>
+        <div class="checkmark4"><img src="/static/img/greenmark.png"></div>
+        <div class="linecontainer">List a second price<font color="red"> *</font><div class="forminput">{{ form.price2 }}</div>
+        <div class="suggest4">e.g. $30/eighth</div>
+        </div>
+        <div class="checkmark5"><img src="/static/img/greenmark.png"></div>
+        <div class="linecontainer">List a third price<div class="forminput">{{ form.price3 }}</div>
+        <div class="suggest5">e.g. $60/quarter</div>
+        </div>
+        <div class="linecontainer">List a fourth price<div class="forminput">{{ form.price4 }}</div>
+        <div class="suggest6">e.g. $120/half</div>
+        </div>
+        <div class="linecontainer">List a fifth price<div class="forminput">{{ form.price5 }}</div>
+        <div class="suggest8">e.g. $225/ounce</div>
+        </div>
+        
+        <div class="linecontainer">Upload a good picture<font color="red"> *</font><div class="forminput">{{ form.item_picture }}</div></div>
+        <div class="linecontainer"><div class="forminput"><input type="submit" value="Submit"></div></div>
+        </form>
+    </div>
+    </div>
+</div>
+
+<script>
+$('#id_body_text').keypress(function(){
+
+    if(this.value.length > 252){
+        return false;
+    }
+    $(".suggest7").html("Remaining characters : " +(252 - this.value.length));
+    $(".suggest7").css('margin-left', "332px");
+    $(".suggest7").css('width', '162px');
+    $(".parsley-errors-list").css('display', 'none')
+});
+
+
+</script>
+
+<script>
+// $.listen('parsley:field:error', function(parsleyField) {
+//     // We need to check what is the validated field
+//     if (parsleyField.$element.attr('id') == 'id_body_text') {
+//         // given that this is the field we want, we'll hide the div
+//         $('.suggest7').css('display', 'none');
+//     }
+// });
+
+
+$.listen('parsley:field:success', function(parsleyField) {
+    // We need to check what is the validated field
+    if (parsleyField.$element.attr('id') == 'id_headline') {
+        // given that this is the field we want, we'll hide the div
+        $('.checkmark1').css('display', 'block');
+    }
+});
+
+$.listen('parsley:field:success', function(parsleyField) {
+    // We need to check what is the validated field
+    if (parsleyField.$element.attr('id') == 'id_body_text') {
+        // given that this is the field we want, we'll hide the div
+        $('.checkmark2').css('display', 'block');
+    }
+});
+
+$.listen('parsley:field:success', function(parsleyField) {
+    // We need to check what is the validated field
+    if (parsleyField.$element.attr('id') == 'id_price1') {
+        // given that this is the field we want, we'll hide the div
+        $('.checkmark3').css('display', 'block');
+        $('.checkmark4').css('display', 'block');
+
+    }
+});
+
+$.listen('parsley:field:success', function(parsleyField) {
+    // We need to check what is the validated field
+    if (parsleyField.$element.attr('id') == 'id_price2') {
+        // given that this is the field we want, we'll hide the div
+        $('.checkmark5').css('display', 'block');
+
+    }
+});
+</script>

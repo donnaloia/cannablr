@@ -1,0 +1,50 @@
+{% include "header.html" %}
+<link rel="stylesheet" type="text/css" href="/static/css/storefront.css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Dealr | Pot to your doorstep</title>
+{% load accounts_extras %}
+<script src="/static/js/masonry.pkgd.min.js"></script>
+<script src="/static/js/imagesloaded.js"></script>
+<script src="/static/js/classietym.js"></script>
+<script src="/static/js/modernizr.custom.js"></script>
+<script src="/static/js/AnimOnScroll.js"></script>
+<script type="text/javascript" src="/static/js/jquery21.min.js"></script>
+
+
+	
+  <div id="timeline-head">
+  <ul class="filterlist">
+    <li>
+    Type
+    <ul class="filterlist">
+      <li><a href="" id='strains'>Strains</a></li>
+      <li><a href="" id='concentrates'>Concentrates</a></li>
+      <li><a href="" id='edibles'>Show Edibles</a></li>
+      <li><a href="" id='strains1'>All</a></li>
+    </ul>
+    </li>
+
+    <li>
+    Delivery
+    <ul class="filterlist">
+      <li><a href="" id='strains1'>Delivery</a></li>
+      <li><a href="" id='strains1'>Store Only</a></li>
+      <li><a href="" id='strains1'>All</a></li>
+    </ul>
+    </li>
+    
+    <li>
+    Sort
+    <ul class="filterlist">
+      <li><a href="" id='strains1'>By Date</a></li>
+      <li><a href="" id='strains1'>By Popularity</a></li>
+    </ul>
+    </li>
+  </ul>
+   
+  </div> 
+
+{% include "storefrontload.html" %}
+
+

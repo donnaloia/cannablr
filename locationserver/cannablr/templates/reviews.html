@@ -1,0 +1,18 @@
+{% include "header.html" %}
+{% load accounts_extras %}
+<link rel="stylesheet" type="text/css" href="/static/css/storefront.css">
+ {% for i in latest_reviews %}
+      <div class="grid_4">
+  	    <div class="imgcontainer">
+          <div class="overlayname">Reviewed by: {{ i.author }}</div>
+	      <div class="overlayprice">Star Rating: {{ i.stars }}</div>
+	      </div>
+        <div class="textcontainer">
+
+      </div>
+      <div class="sellerdiv">
+      	<div class="sellerinfo">Description: <b>{{ i.comment }}</b></div>
+      	
+      </div>
+    </div>
+    {% endfor %}

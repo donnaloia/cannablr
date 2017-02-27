@@ -1,0 +1,13 @@
+{% include "header.html" %}
+{% load i18n %} 
+Whats up
+
+<form action="" enctype="multipart/form-data" method="post">
+ 
+  {% csrf_token %}
+  <fieldset>
+    <legend>{% trans "Sell Form" %}</legend>
+    {{ form.as_p }}
+  </fieldset>
+  <input type="submit" value="{% trans "Save changes" %}" />
+</form>

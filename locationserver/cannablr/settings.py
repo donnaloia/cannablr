@@ -9,6 +9,10 @@ DEBUG=False
 
 WSGI_APPLICATION = 'cannablr.wsgi.application'
 
+
+# Database
+# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -22,8 +26,6 @@ DATABASES = {
 
 TIME_ZONE = "UTC"
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = "en-us"
 
 SITE_ID = int(os.environ.get("SITE_ID", 1))
@@ -50,7 +52,6 @@ MIDDLEWARE_CLASSES = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
 ]
@@ -90,13 +91,18 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "cannablr",
     "accounts",
-    "userena",
-    "guardian",
-    "easy_thumbnails",
-    "django_messages",
-    "rest_framework",
-    # project,
+    "cities",
 ]
+
+CITIES_FILES = {
+    'city': {
+       'filename': 'cities1000.zip',
+       'urls':     ['http://download.geonames.org/export/dump/'+'{filename}']
+    },
+}
+
+CITIES_POSTAL_CODES = ['US', 'CA']
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -170,6 +176,3 @@ AUTHENTICATION_BACKENDS = [
 ANONYMOUS_USER_ID = -1
 
 AUTH_PROFILE_MODULE = 'accounts.MyProfile'
-USERENA_SIGNIN_REDIRECT_URL = '/accounts/%(username)s/'
-LOGIN_URL = '/accounts/signin/'
-LOGOUT_URL = '/accounts/signout/'
