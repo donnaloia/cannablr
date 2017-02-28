@@ -1,5 +1,5 @@
 #!/bin/bash
-sleep 15
+sleep 25
 python manage.py makemigrations accounts
 python manage.py migrate
 python manage.py check_permissions
