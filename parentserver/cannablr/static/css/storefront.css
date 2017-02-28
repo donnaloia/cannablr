@@ -585,5 +585,13 @@ img {
 
 }
 
+@media screen and (max-width: 2560px) {
+.grid {
+max-width: 1910px;
+list-style: none;
+margin: 30px auto;
+padding: 0;
+}
+}
 
 

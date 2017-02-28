@@ -110,7 +110,7 @@ nav {
   width: 4em;
   position: absolute;
   z-index: 2;
-  left: 88%;
+  right: 135px;
   margin-left: -2.6em;
   /* half of width */
   top: -300px;
