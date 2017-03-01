@@ -67,7 +67,7 @@ $ docker-compose up
 Now What?
 ```sh
 $ docker-compose ps
-$ docker inspect --format '{{ .NetworkSettings.IPAddress }}' parentserver
+$ docker inspect --format '{{ .NetworkSettings.IPAddress }}' nginx
 ```
 Curl or visit this ip address in your browser (port 8000) - the web app should be running and fully functional!
 
