@@ -72,10 +72,15 @@ $ docker inspect --format '{{ .NetworkSettings.IPAddress }}' nginx
 Curl or visit this ip address in your browser (port 8000) - the web app should be running and fully functional!
 
 
-### Scale Up!
+# Scale Up!
 ```
 $ docker-compose scale parentserver=2
 ```
+or...
+```
+$ docker-compose scale parentserver=10
+```
+
 The nginx.conf has been edited to automatically detect when a new instance of parentserver has been added upstream.  We can now add multiple instances of parentserver on the fly, and nginx will automatically load balance between them.  Pretty cool!
 
 
