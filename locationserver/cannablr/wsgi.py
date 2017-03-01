@@ -1,5 +1,5 @@
 """
-WSGI config for dealr project.
+WSGI config for cannablr project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
