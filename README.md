@@ -89,6 +89,7 @@ The nginx.conf has been edited to automatically detect when a new instance of pa
 
  - Write MOAR Tests
  - The Flask Auth service is currently running using Flask's built in http server - This is obviously not production friendly
+ - Add readme's for each microservice with a map of API endpoints
 
 
 **Free Software, Hell Yeah!**
