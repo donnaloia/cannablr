@@ -1,23 +1,35 @@
 from django.forms import ModelForm, Textarea, TextInput, RadioSelect
+from accounts.models import MyProfile
 from accounts.models import UserReview
 from accounts.models import Entry
 from django import forms
 
-# Create the form class.
-class UserReviewForm(ModelForm):
-     class Meta:
-         model = UserReview
-         fields = ['stars', 'comment']
-         widgets = {
-         'comment': Textarea,
-         'stars': RadioSelect(choices=[
-         	(1, 'Very poor'),
-         	(2, 'Poor'),
-         	(3, 'Satisfactory'),
-         	(4, 'Great'),
-         	(5, 'Excellent')
-         	])
-         }
+
+attrs_dict = {'class': 'required'}
+USERNAME_RE = r'^[\.\w]+$'
+
+
+class SignupForm(forms.Form):
+	''' This form is for user registration and does not have an accompanying model,
+	this is because when the form is filled out, the credentials are sent to the auth
+	server which handles signup/login/logout/authorization'''
+	username = forms.RegexField(regex=USERNAME_RE, max_length=30, widget=forms.TextInput(attrs=attrs_dict))
+	email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict, maxlength=75)))
+	password1 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False))
+	password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False))
+
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = MyProfile
+        exclude = ['user', 'privacy']
+        widgets = {
+            'deliveryoption': forms.RadioSelect(choices=[
+            (True, '  Yes'),
+            (False, '  No')             
+        ])}
+
 
 
 class SellForm(ModelForm):
@@ -35,3 +47,19 @@ class SellForm(ModelForm):
 			(3, 'Edible')
 			])
 		}
+
+
+class UserReviewForm(ModelForm):
+     class Meta:
+         model = UserReview
+         fields = ['stars', 'comment']
+         widgets = {
+         'comment': Textarea,
+         'stars': RadioSelect(choices=[
+         	(1, 'Very poor'),
+         	(2, 'Poor'),
+         	(3, 'Satisfactory'),
+         	(4, 'Great'),
+         	(5, 'Excellent')
+         	])
+         }

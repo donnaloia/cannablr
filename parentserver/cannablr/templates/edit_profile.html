@@ -1,0 +1,40 @@
+{% include "header.html" %}
+{% load i18n %}
+<title>cannablr | Edit Profile</title>
+
+<link rel="stylesheet" type="text/css" href="/static/css/profile_form.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/parsley.js"></script>
+
+<div class="background2div">
+    <div class="backgroundiv">
+    <div class="formdiv">
+        <div class="selltitle">Edit Profile</div>
+        <div class="sellsubtitle">Enter your top secret credentials below.  Note:  If you are a dispensary, please fill out all fields.</div>
+        <form action="" enctype="multipart/form-data" method="post" data-parsley-validate>
+        {% csrf_token %}
+        <div class="linecontainer">First Name<font color="red"> *</font><div class="forminput">{{ form.first_name }}</div></div>
+        <div class="linecontainer">Last Name<div class="forminput">{{ form.last_name }}</div></div>
+        <div class="linecontainer">Dispensary Name<div class="forminput">{{ form.storename }}</div></div>
+        <div class="linecontainer">Upload a pic of your mug<div class="forminput"><input id="id_mugshot" name="mugshot" type="file" /></div></div>
+
+
+        <div class="linecontainer">Street Address<div class="forminput">{{ form.streetaddress }}</div></div>
+        <div class="linecontainer">City<div class="forminput">{{ form.city }}</div></div>
+        <div class="linecontainer">State<div class="forminput">{{ form.state }}</div></div>
+        <div class="linecontainer">Zipcode<font color="red"> *</font><div class="forminput">{{ form.zipcode }}</div></div>
+        <div class="linecontainer">Phone Number<font color="red"> *</font><div class="forminput">{{ form.phone}}</div></div>
+        <div class="linecontainer">Will you deliver?<font color="red"> *</font><div class="forminput2">{{ form.deliveryoption }}</div></div>
+        <div class="linecontainer">Website URL<div class="forminput">{{ form.websiteurl }}</div></div>
+        <div class="linecontainer">Store Summary<div class="forminput">{{ form.storebio }}</div></div>
+        <div class="linecontainer">Storefront Bulletin <div class="forminput">{{ form.storespecials }}</div></div>
+        <div class="linecontainer">Upload a company logo<div class="forminput"><input id="id_coverpic" name="coverpic" type="file" /></div></div>
+
+
+
+
+        <div class="linecontainer"><div class="forminput"><input type="submit" value="Save"></div></div>
+        </form>
+    </div>
+    </div>
+</div>

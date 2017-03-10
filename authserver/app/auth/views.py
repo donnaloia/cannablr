@@ -19,12 +19,12 @@ mod = Blueprint('auth', __name__, url_prefix='/api/v1')
 api = Api(app)
 
 # Helper functions
-def create_new_user(email, password):
+def create_new_user(email, username, password):
     if email is None or password is None:
         abort(400)
     if User.query.filter_by(email=email).first() is not None:
         abort(400)
-    user = User(email=email, password=password)
+    user = User(email=email, username=username, password=password)
     db.session.add(user)
     db.session.commit()
     return user

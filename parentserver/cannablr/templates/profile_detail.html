@@ -1,0 +1,277 @@
+<!doctype html>
+{% load round_numbers %}
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://tympanus.net/Development/GridLoadingEffects/js/masonry.pkgd.min.js"></script>
+<script src="http://tympanus.net/Development/GridLoadingEffects/js/imagesloaded.js"></script>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>cannablr | {% if profile.storename %} {{ profile.storename }} {% else %} {{ profile.user.get_full_name }} {% endif %}</title>
+<meta name="description" content="Documentation and reference library for ZURB Foundation. JavaScript, CSS, components, grid and more."/>
+<link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css"/>
+<meta name="author" content="ZURB, inc. ZURB network also includes zurb.com"/>
+<meta name="copyright" content="ZURB, inc. Copyright (c) 2014"/>
+<link rel="stylesheet" href="/static/css/profilenew.css"/>
+<link href="/static/webfonts/ss-junior.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="row">
+    <div class="large-12 columns">
+        <div class="row">
+            <div class="large-12 columns">
+                <nav class="top-bar" data-topbar>
+                <ul class="title-area">
+                    <li class="name">
+                    <h1><a href="/storefront/">cannablr</a></h1>
+                    </li>
+                    <li class="toggle-topbar menu-icon">
+                    <a href="#"><span>menu</span></a>
+                    </li>
+                </ul>
+                <section class="top-bar-section">
+                <ul class="right">
+                    <li class="divider"></li>
+                    <li class="has-dropdown">
+                    <a href="#">Menu</a>
+                    <ul class="dropdown">
+                        <li><label>Strains</label></li>
+                        <li class="has-dropdown">
+                        <a href="#">OG Kush</a>
+                        </li>
+                        <li>
+                        <a href="#">Lemon Haze</a>
+                        </li>
+                        <li>
+                        <a href="#">White Widow</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><label>Concentrates</label></li>
+                        <li>
+                        <a href="#">OG Shatter</a>
+                        </li>
+                        <li>
+                        <a href="#">Lemon Diesel Hash</a>
+                        </li>
+                        <li>
+                        <a href="#">Hydro Hash</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><label>Edibles</label></li>
+                        <li>
+                        <a href="#">Brownie</a>
+                        </li>
+                        <li>
+                        <a href="#">THC Soda</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                        <a href="/accounts/{{ profile.user.username }}/listview/">See all →</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="has-dropdown">
+                    <a href="#">Directory</a>
+                    <ul class="dropdown">
+                        <li>
+                        <a href="/storefront/">Dashboard</a>
+                        </li>
+                        <li>
+                        <a href="/messages/">Messages</a>
+                        </li>
+                        <li>
+                        <a href="/storefront/">Discover</a>
+                        </li>
+                        <li>
+                        <a href="/sell/">Sell</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="has-dropdown">
+                    <a href="#">Options</a>
+                    <ul class="dropdown">
+                        <li>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'userena_profile_detail' user.username %}">My Profile</a>
+                        </li>
+                        <li>
+                        <a href="{% url 'userena_profile_edit' user.username %}">Edit Profile</a>
+                        </li>
+                        <li>
+                        <a href="/accounts/password/reset">Change Password</a>
+                        </li>
+                        <li>
+                        <a href="/accounts/signout">Sign Out</a>
+                        {% else %}
+                        <a href="/accounts/signin/">Sign In</a>
+                        {% endif %}
+                        </li>
+                    </ul>
+                    </li>
+                </ul>
+                </section>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 small-12 columns">
+                 {% if profile.coverpic %}<img src="{{ profile.coverpic.url }}" class="photo"/>{% else %}<img src="/static/img/placeholder.png" class="photo"/>{% endif %}
+                <a href="/messages/compose/{{ profile.user }}"><div class="sendmessage">
+                Message
+                </div></a>
+                <div class="follow">
+                Follow
+                </div>
+                <div class="hide-for-small panel">
+                    <div class="storetitle">
+                        <i class="ss-icon">store</i>
+                        <p>
+                            {% if profile.storename %} {{ profile.storename }} {% else %} {{ profile.user.get_full_name }} {% endif %}
+                        </p>
+                    </div>
+                    <div class="storeaddress">
+                        <i class="ss-icon">map</i>
+                        <p>
+                            {% if profile.streetaddress %} {{ profile.streetaddress }} {% else %} No Address Listed {% endif %}
+                        </p>
+                    </div>
+                    <div class="storephone">
+                        <i class="ss-icon">phone</i>
+                        <p>
+                            {% if profile.phone %} {{ profile.phone }} {% else %} No Phone Number Listed {% endif %}
+                        </p>
+                    </div>
+                    <div class="storewebsite">
+                        <i class="ss-icon">globe</i>
+                        <p>
+                            {% if profile.websiteurl %} {{ profile.websiteurl|urlize }} {% else %} No URL {% endif %}
+                        </p>
+                    </div>
+                    <div class="storedelivery">
+                        <i class="ss-icon">truck</i>
+                        <p>
+                            {% if profile.deliveryoption is True %}We Deliver{% else %}No Deliveries{% endif %}
+                        </p>
+                    </div>
+                    <h5 class="subheader">Our doors opened in the summer of 2005. We have every strain imaginable at great prices!</h5>
+                </div>
+                <a href="#">
+                <div class="panel callout radius">
+                    <h6> {% if profile.storespecials %} {{ profile.storespecials }} {% else %} Joined on {{ profile.user.date_joined }} {% endif %}</h6>
+                </div>
+                </a>
+            </div>
+            <div class="large-8 columns">
+                <div class="row2">
+                     {% for i in hotsellers %}
+                    <div class="large-4 small-6 columns">
+                        <img src="{{ i.item_picture.url }}" alt=""/>
+                        <div class="pricepanel">
+                            <h5>{{ i.headline }}</h5>
+                            <div class="pricing">
+                                {{ i.price1 }}<br>
+                                {{ i.price2 }}
+                            </div>
+                        </div>
+                    </div>
+                     {% endfor %}
+                </div>
+            </div>
+            <div class="showmore"><a href="/accounts/{{ profile.user.username }}/listview/">Show More</a></div>
+        </div>
+    </div>
+    <div class="sellerfeedback">
+        Seller Feedback {{ profile.reviewavg|roundnumbers|safe }}
+
+        <div class="commentbutton">
+            View All | <a href="#" class="exposeform">Add Review</a>
+        </div>
+    </div>
+    <div class="hiddenreviewform">
+        <form action="" enctype="multipart/form-data" method="post" data-parsley-validate>
+             {% csrf_token %}
+            <div class="linecontainer">
+                Rate User
+                <div class="forminput">
+                    <span class="star-rating">
+                    <input type="radio" value="1" id="id_stars_0" name="stars"><i></i>
+                    <input type="radio" value="2" id="id_stars_1" name="stars"><i></i>
+                    <input type="radio" value="3" id="id_stars_2" name="stars"><i></i>
+                    <input type="radio" value="4" id="id_stars_3" name="stars"><i></i>
+                    <input type="radio" value="5" id="id_stars_4" name="stars"><i></i>
+                    </span>
+                    <div class="linecontainer">
+                        Comments
+                        <div class="forminput">
+                            {{ form.comment }}
+                        </div>
+                    </div>
+                    <div class="submitbutton">
+                        <div class="forminputbutton">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+     {% for i in userreviews %}
+    <div class="reviewrow">
+        <div class="commentpanel">
+            <div class="reviewerpic">
+                <a href="/accounts/{{ i.author }}"><img src="{{ i.author.get_profile.get_mugshot_url }}"></a>
+            </div>
+            <div class="authordiv">
+                <strong>Reviewed by {{ i.author }}</strong>
+                <br>
+                <div class="reviewdate">
+                    October 3rd, 2014
+                </div>
+                <div class="starcontainer">
+                    <div class="stars">
+                        {% if i.stars == 1 %}<img src="/static/img/stars2/1star.png">
+                        {% elif i.stars == 2 %}<img src="/static/img/stars2/2stars.png">
+                        {% elif i.stars == 3 %}<img src="/static/img/stars2/3stars.png">
+                        {% elif i.stars == 4 %}<img src="/static/img/stars2/4stars.png">
+                        {% elif i.stars == 5 %}<img src="/static/img/stars2/5stars.png">
+                        {% endif %}
+                    </div>
+                    <div class="babistars">
+                        {{ i.stars }} / 5 stars
+                    </div>
+                </div>
+                <div class="responddiv">
+                    Send Message
+                </div>
+                <hr>
+                <div class="reviewcomment">
+                    {{ i.comment|linebreaksbr }}
+                </div>
+            </div>
+        </div>
+    </div>
+     {% endfor %} <footer class="footerpanel">
+</div>
+</div>
+<script>
+$(function(){
+    var $container = $('.row2');
+    $container.imagesLoaded( function() {
+        $container.masonry();
+    });
+});
+</script>
+<script>
+    $(document).ready(function() {
+        $(".hiddenreviewform").hide();
+        $('.exposeform').click(function() {
+                $(".hiddenreviewform").show(300)
+                return false;
+        });
+    });
+</script>
+</body>
+</html>

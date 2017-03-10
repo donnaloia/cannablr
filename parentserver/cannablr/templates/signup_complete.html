@@ -1,0 +1,13 @@
+{% include "header.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Thanks for joining us!" %}{% endblock %}
+
+{% block content_title %}<h2>{% trans "You are now signed in" %}</h2>{% endblock %}
+
+<script>
+setTimeout(function() {
+  window.location.href = "/storefront";
+}, 2000);
+
+</script>

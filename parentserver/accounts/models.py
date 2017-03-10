@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
-from userena.models import UserenaBaseProfile
 from django.conf import settings
 from PIL import Image
 from django_resized import ResizedImageField
@@ -10,11 +9,12 @@ import datetime
 
 
 
-class MyProfile(UserenaBaseProfile):
-    user = models.OneToOneField(User,
-                                unique=True,
-                                verbose_name=_('user'),
-                                related_name='my_profile')
+
+
+class MyProfile(models.Model):
+    user = models.CharField(max_length=16)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     storename=models.CharField(null=True, blank=True, max_length=20)
     streetaddress=models.CharField(null=True, blank=True, max_length=30)
     city = models.CharField(null=True, blank=True, max_length=20)
@@ -42,6 +42,9 @@ class MyProfile(UserenaBaseProfile):
     storespecials=models.CharField(null=True, blank=True, max_length=65)
     reviewavg=models.FloatField(null=True, blank=True, max_length=5)
     coverpic = ResizedImageField(upload_to="site_media/media/covers/", null=True, blank=True)
+    mugshot = ResizedImageField(upload_to="mugshots/", null=True, blank=True)
+    privacy = models.BooleanField(default=False)
+
 
     def __unicode__(self):
         return u'%s %s %s %s %s %s %s %s' % (self.user, self.storename, self.streetaddress, self.city, self.state, self.zipcode, self.storebio, self.reviewavg)

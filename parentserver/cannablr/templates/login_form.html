@@ -1,0 +1,31 @@
+{% load i18n %}
+<title>cannablr | Sign In</title>
+<link rel="stylesheet" type="text/css" href="/static/css/signin_form.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/parsley.js"></script>
+
+<div class="background2div">
+    <div class="backgroundiv">
+    <div class="formdiv">
+        <div class="selltitle">Welcome Back</div>
+        <div class="sellsubtitle">Enter your credentials</div>
+        <form action="" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="linecontainer">Username or Email<div class="forminput">{{ form.identification }}</div></div>
+        <div class="linecontainer">Password<div class="forminput">{{ form.password }}</div></div>
+        <div class="linecontainer"><div class="forminput"><input type="submit" value="Sign In"></div></div>
+        <div class="signuplink"><a href="/accounts/signup">Create Account</a></div>
+        {{ form.non_field_errors }}
+        </form>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
