@@ -2,8 +2,8 @@
   tasks:
    - name: Install Django
      pip: name=Django
-   - name: Install Userena
-     pip: name=django-userena
+   - name:  Install PIL
+     pip: Pillow
    - name: Install Django Messages
      pip: name=https://github.com/arneb/django-messages/archive/master.zip
    - name: Install Django REST Framework
@@ -18,10 +18,6 @@
      pip: name=whitenoise
    - name: Install requests
      pip: name=requests
-   - name: Override Userena forms.py
-     copy: src=../../housekeeping/forms.py dest=/usr/local/lib/python2.7/dist-packages/userena/forms.py
-   - name: Override Userena views.py
-     copy: src=../../housekeeping/views.py dest=/usr/local/lib/python2.7/dist-packages/userena/views.py
    - name: Copy startup.sh
      copy: src=../../housekeeping/startup.sh dest=../../startup.sh mode=0755
 

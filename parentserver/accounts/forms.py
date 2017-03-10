@@ -19,6 +19,10 @@ class SignupForm(forms.Form):
 	password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False))
 
 
+class LoginForm(forms.Form):
+	username = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False))
+	password = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False))
+
 
 class ProfileForm(forms.ModelForm):
     class Meta:

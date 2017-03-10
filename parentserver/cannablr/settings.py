@@ -48,7 +48,7 @@ STATIC_URL = "/static/"
 
 MIDDLEWARE_CLASSES = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "cannablr.middleware.custom_auth.process_request"
+    "cannablr.middleware.custom_auth.process_request",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -93,7 +93,7 @@ INSTALLED_APPS = [
     "accounts",
     #"userena",
     "guardian",
-    "easy_thumbnails",
+    # "easy_thumbnails",
     "django_messages",
     "rest_framework",
     # project,
