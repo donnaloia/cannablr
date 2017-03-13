@@ -35,7 +35,6 @@ class ProfileForm(forms.ModelForm):
         ])}
 
 
-
 class SellForm(ModelForm):
 	class Meta:
 		model = Entry

@@ -10,9 +10,9 @@ class User(db.Model):
     email         = db.Column(db.String(128), nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
 
-    def __init__(self, email=None, password=None):
-        self.email         = email.lower()
+    def __init__(self, username=None, email=None, password=None):
         self.username      = username.lower()
+        self.email         = email.lower()
         self.password_hash = self.create_password_hash(password)
 
     def create_password_hash(self, password):
@@ -25,6 +25,6 @@ class User(db.Model):
     def to_json(self):
         return {
             'uid': self.uid,
-            'auth_username': self.username,
+            'username': self.username,
             'email': self.email,
         }

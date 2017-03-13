@@ -6,6 +6,7 @@ from accounts.forms import UserReviewForm
 from accounts.forms import SellForm
 from accounts.forms import SignupForm
 from accounts.forms import LoginForm
+from accounts.forms import ProfileForm
 from accounts.models import Entry
 from accounts.models import UserReview
 from accounts.models import MyProfile
@@ -29,7 +30,7 @@ from rest_framework.decorators import authentication_classes
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import BasicAuthentication
-from accounts.api_consumer import cannablr_register, cannablr_login, validate_token
+from accounts.api_consumer import cannablr_register, cannablr_login, validate_token, calculate_postalcodes
 
 
 
@@ -39,6 +40,7 @@ def home(request):
         return redirect('/storefront')
     else:
         return render(request, 'homepage.html')
+
 
 def storefront(request):
     if request.user.is_authenticated():
@@ -84,8 +86,14 @@ def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-            cannablr_register(form.cleaned_data['username'], form.cleaned_data['email'], form.cleaned_data['password1'])
-            user = form.save()
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password1']
+            cannablr_register(username, email, password)
+            active_token = cannablr_login(username, password)
+            request.session['active_token'] = active_token
+            request.session['username'] = username
+            return HttpResponseRedirect('/accounts/signup/complete')
     else:
         form = SignupForm()
     return render(request, 'signup_form.html', {'form': form})
@@ -95,22 +103,25 @@ def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username, password = (form.cleaned_data['identification'],
+            username, password = (form.cleaned_data['username'],
                                                      form.cleaned_data['password'])
             active_token = cannablr_login(username, password)
             request.session['active_token'] = active_token
-            #redirect to profile page
+            request.sesion['username'] = username
+            return HttpResponseRedirect('/accounts/{}'.format(request.username))
     else:
         form = LoginForm()
     return render(request, 'login_form.html', {'form': form})
 
-def profile_edit(request):
+
+def profile_edit(request, username):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             cleanzipcode= form.cleaned_data['zipcode']
             zip_codes=calculate_postalcodes(cleanzipcode)
             profile=form.save(commit=False)
+            profile.user = request.session['username']
             profile.nearbyzips1 = zip_codes[0]
             profile.nearbyzips2 = zip_codes[1]
             profile.nearbyzips3 = zip_codes[2]
@@ -124,25 +135,50 @@ def profile_edit(request):
             profile.nearbyzips11 = zip_codes[10]
             profile.nearbyzips12 = zip_codes[11]
             profile = form.save()
+            return HttpResponseRedirect('/accounts/{}'.format(request.session['username']))
     else:
         form = ProfileForm()
     return render(request, 'edit_profile.html', {'form': form})
+
+
+def profile_detail(request, username):
+    # if request.method == 'POST':
+    #     form = UserReviewForm(request.POST)
+    #     tester1 = User.objects.get(username=username)
+    #     if form.is_valid():
+    #         reviewform=form.save(commit=False)
+    #         reviewform.name=tester1
+    #         reviewform.author=request.user
+    #         reviewform.save()
+    #         staravg = UserReview.objects.filter(name__username__iexact=username).aggregate(Avg('stars'))
+    #         h = MyProfile.objects.get(user__username__iexact=username)
+    #         h.reviewavg=staravg['stars__avg']
+    #         h.save()
+    #         return redirect('/accounts/{}'.format(tester1))
+    # else:
+    form = UserReviewForm()
+    profile_info = MyProfile.objects.filter(user=username)
+    hotsellers = Entry.objects.filter(author__user=username)[:4]
+    userreviews = UserReview.objects.filter(name__username=username)
+    return render(request, 'profile_detail.html', {'profile': profile_info, 'hotsellers': hotsellers, 'userreviews': userreviews, 'form': form})
+
 
 def show_reviews(request, username1):
 	latest_reviews = UserReview.objects.filter(name__username=username1)
 	context1 = {'latest_reviews': latest_reviews}
 	return render(request, 'reviews.html', context1)
 
-@login_required
+
 def get_entry(request):
 	if request.method == 'POST':
 		f = SellForm(request.POST, request.FILES)
 		if f.is_valid():
 			form=f.save(commit=False)
-			form.author = request.user
-			form.zipcode = request.user.my_profile.zipcode
+			form.author = request.session['username']
+			active_user = MyProfile.objects.filter(user=request.session['username'])
+			form.zipcode = active_user['zipcode']
 			form.save()
-			return HttpResponseRedirect('/accounts/{}'.format(request.user))
+			return HttpResponseRedirect('/accounts/{}'.format(request.session['username']))
 		else:
 			print f.errors
 	else:

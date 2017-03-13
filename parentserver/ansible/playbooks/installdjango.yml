@@ -3,7 +3,7 @@
    - name: Install Django
      pip: name=Django
    - name:  Install PIL
-     pip: Pillow
+     pip: name=Pillow
    - name: Install Django Messages
      pip: name=https://github.com/arneb/django-messages/archive/master.zip
    - name: Install Django REST Framework

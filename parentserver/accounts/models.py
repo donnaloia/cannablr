@@ -6,10 +6,6 @@ from django_resized import ResizedImageField
 import datetime
 
 
-
-
-
-
 class MyProfile(models.Model):
     user = models.CharField(max_length=16)
     first_name = models.CharField(max_length=30)
@@ -52,7 +48,7 @@ class MyProfile(models.Model):
 class Entry(models.Model):
     headline= models.CharField(max_length=200,)
     body_text = models.TextField()
-    author=models.ForeignKey(settings.AUTH_USER_MODEL, related_name='entryauthors')
+    author=models.ForeignKey(MyProfile, related_name='entryauthors')
     pub_date=models.DateTimeField(auto_now_add=True)
     zipcode =models.IntegerField(null=True)
     entrytype = models.IntegerField(null=True)
@@ -64,7 +60,7 @@ class Entry(models.Model):
     item_picture = ResizedImageField(upload_to="site_media/media/items/")
 
     def __str__(self):
-        return u'%s %s %s %s %s %s %s' % (self.headline, self.body_text, self.author, self.pub_date, self.zipcode, self.price1, self.price2)
+        return u'%s %s %s %s %s %s %s' % (self.headline, self.body_text, self.pub_date, self.zipcode, self.price1, self.price2)
 
 class UserReview(models.Model):
     name= models.ForeignKey(User, related_name='usersbeingreviewed', null=True, blank=True)

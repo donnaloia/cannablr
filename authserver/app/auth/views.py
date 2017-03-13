@@ -1,30 +1,28 @@
 # -*- coding: utf-8 -*-
+import redis
 from flask import Blueprint, g
 from flask_restful import Resource, reqparse, Api, abort
-
 from app import db
 from app.auth.models import User
 from app import app
-
 from itsdangerous import (
     TimedJSONWebSignatureSerializer as Serializer,
     BadSignature,
     SignatureExpired
 )
 
-import redis
 
 mod = Blueprint('auth', __name__, url_prefix='/api/v1')
-
 api = Api(app)
 
+
 # Helper functions
-def create_new_user(email, username, password):
+def create_new_user(username, email, password):
     if email is None or password is None:
         abort(400)
     if User.query.filter_by(email=email).first() is not None:
         abort(400)
-    user = User(email=email, username=username, password=password)
+    user = User(username=username, email=email, password=password)
     db.session.add(user)
     db.session.commit()
     return user
@@ -36,7 +34,6 @@ def list_of_users():
 def generate_token(user, expiration=3600):
     s = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
     return s.dumps({'uid': user.uid })
-
 
 def validate_token(token):
     s = Serializer(app.config['SECRET_KEY'])
@@ -50,8 +47,8 @@ def validate_token(token):
     g.current_user = user
     return user
 
-def authenticate(email, password):
-    user = User.query.filter_by(email=email).first()
+def authenticate(username, password):
+    user = User.query.filter_by(username=username).first()
     if user is None:
         abort(400)
     if user.verify_password(password):
@@ -65,12 +62,13 @@ class UserResource(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('password', type=str)
     parser.add_argument('email', type=str)
+    parser.add_argument('username', type=str)
 
     def post(self):
         """ Create a new user """
         args = self.parser.parse_args(strict=True)
         try:
-            user = create_new_user(args['email'], args['password'])
+            user = create_new_user(args['username'], args['email'], args['password'])
             return user.to_json, 200
         except:
             abort(400)
@@ -95,13 +93,13 @@ class UserList(Resource):
 # Authenticate a user's username/password, returns a token upon success
 class LoginUser(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('email', type=str)
+    parser.add_argument('username', type=str)
     parser.add_argument('password', type=str)
 
     def post(self):
         """ Create json web token for a valid user """
         args = self.parser.parse_args(strict=True)
-        user = authenticate(args['email'], args['password'])
+        user = authenticate(args['username'], args['password'])
         if user is None:
             abort(400)
         token = generate_token(user)
@@ -113,7 +111,7 @@ class LoginUser(Resource):
         """  Return token """
         return {'token': token.decode('utf-8'), 'duration': 3600}, 200
 
-# Determines if a json web token is valid for a given user account
+# Determines if a JSON web token is valid for a given user account
 class ValidateToken(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('token', type=str)

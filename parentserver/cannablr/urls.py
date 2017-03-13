@@ -4,10 +4,11 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from accounts.views import home
 from accounts.views import storefront
+from accounts.views import profile_detail
+from accounts.views import profile_edit
 from accounts.views import get_entry
 from accounts.views import show_reviews
 from django.contrib import admin
-from accounts.views import profile_edit
 # from accounts.views import profile_listview
 from accounts.views import EntryAPI
 from accounts.views import UserAPI
@@ -21,12 +22,12 @@ urlpatterns = [
 	url(r"^sell/", get_entry),
     url(r"^reviews/(?P<username1>\w+)/$", show_reviews),
     url(r'^admin/', include(admin.site.urls)),
-    # url(r'^accounts/', include('userena.urls')),
     url(r'^messages/', include('django_messages.urls')),
 
-    #Userena
+    #Account URLS
     url(r'^accounts/signup/$', signup),
-    url(r'^accounts/(?P<username>[\@\.\+\w-]+)/signup/complete/$',TemplateView.as_view(template_name='index.html')),
+    url(r'^accounts/signup/complete/$',TemplateView.as_view(template_name='signup_complete.html')),
+    url(r'^accounts/(?P<username>[\@\.\w-]+)/$', profile_detail),
     # url(r'^accounts/(?P<username>[\@\.\w-]+)/listview/$', profile_listview),
     url(r'^accounts/(?P<username>[\@\.\w-]+)/edit/$', profile_edit),
     url(r'^accounts/signin/$',login),
