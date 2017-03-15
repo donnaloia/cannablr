@@ -34,34 +34,33 @@ from accounts.api_consumer import cannablr_register, cannablr_login, validate_to
 
 
 
-
 def home(request):
-    if request.user.is_authenticated():
+    if 'username' in request.session:
         return redirect('/storefront')
     else:
         return render(request, 'homepage.html')
 
 
 def storefront(request):
-    if request.user.is_authenticated():
-        if request.user.my_profile.zipcode:
-            latest_entries = Entry.objects.filter(zipcode__in=[request.user.my_profile.nearbyzips1,
-            request.user.my_profile.nearbyzips2,
-            request.user.my_profile.nearbyzips3,
-            request.user.my_profile.nearbyzips4,
-            request.user.my_profile.nearbyzips5,
-            request.user.my_profile.nearbyzips6,
-            request.user.my_profile.nearbyzips7,
-            request.user.my_profile.nearbyzips8,
-            request.user.my_profile.nearbyzips9,
-            request.user.my_profile.nearbyzips10,
-            request.user.my_profile.nearbyzips11,
-            request.user.my_profile.nearbyzips12]).order_by('-pub_date')[:16]
-            unread_list = inbox_count_for(request.user)
-            context = {'latest_entries': latest_entries, 'unread_list': unread_list}        
+    if 'username' in request.session:
+    	active_user = MyProfile.objects.get(user=request.session['username'])
+        if active_user.zipcode:
+            latest_entries = Entry.objects.filter(zipcode__in=[active_user.nearbyzips1,
+            active_user.nearbyzips2,
+            active_user.nearbyzips3,
+            active_user.nearbyzips4,
+            active_user.nearbyzips5,
+            active_user.nearbyzips6,
+            active_user.nearbyzips7,
+            active_user.nearbyzips8,
+            active_user.nearbyzips9,
+            active_user.nearbyzips10,
+            active_user.nearbyzips11,
+            active_user.nearbyzips12]).order_by('-pub_date')[:16]
+            context = {'latest_entries': latest_entries, 'active_user': active_user}        
         else:
             latest_entries = Entry.objects.order_by('-pub_date')[:16]
-            context = {'latest_entries': latest_entries}
+            context = {'latest_entries': latest_entries, 'active_user': active_user}
     else:
         latest_entries = Entry.objects.order_by('-pub_date')[:16]
         context = {'latest_entries': latest_entries} 
@@ -108,37 +107,39 @@ def login(request):
             active_token = cannablr_login(username, password)
             request.session['active_token'] = active_token
             request.sesion['username'] = username
-            return HttpResponseRedirect('/accounts/{}'.format(request.username))
+            return HttpResponseRedirect('/accounts/{}'.format(request.session['username']))
     else:
         form = LoginForm()
     return render(request, 'login_form.html', {'form': form})
 
 
 def profile_edit(request, username):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            cleanzipcode= form.cleaned_data['zipcode']
-            zip_codes=calculate_postalcodes(cleanzipcode)
-            profile=form.save(commit=False)
-            profile.user = request.session['username']
-            profile.nearbyzips1 = zip_codes[0]
-            profile.nearbyzips2 = zip_codes[1]
-            profile.nearbyzips3 = zip_codes[2]
-            profile.nearbyzips4 = zip_codes[3]
-            profile.nearbyzips5 = zip_codes[4]
-            profile.nearbyzips6 = zip_codes[5]
-            profile.nearbyzips7 = zip_codes[6]
-            profile.nearbyzips8 = zip_codes[7]
-            profile.nearbyzips9 = zip_codes[8]
-            profile.nearbyzips10 = zip_codes[9]
-            profile.nearbyzips11 = zip_codes[10]
-            profile.nearbyzips12 = zip_codes[11]
-            profile = form.save()
-            return HttpResponseRedirect('/accounts/{}'.format(request.session['username']))
-    else:
-        form = ProfileForm()
-    return render(request, 'edit_profile.html', {'form': form})
+	if request.session['username'] != username:
+		return HttpResponseRedirect("/accounts/signin")
+	if request.method == 'POST':
+		form = ProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			cleanzipcode= form.cleaned_data['zipcode']
+			zip_codes=calculate_postalcodes(cleanzipcode)
+			profile=form.save(commit=False)
+			profile.user = request.session['username']
+			profile.nearbyzips1 = zip_codes[0]
+			profile.nearbyzips2 = zip_codes[1]
+			profile.nearbyzips3 = zip_codes[2]
+			profile.nearbyzips4 = zip_codes[3]
+			profile.nearbyzips5 = zip_codes[4]
+			profile.nearbyzips6 = zip_codes[5]
+			profile.nearbyzips7 = zip_codes[6]
+			profile.nearbyzips8 = zip_codes[7]
+			profile.nearbyzips9 = zip_codes[8]
+			profile.nearbyzips10 = zip_codes[9]
+			profile.nearbyzips11 = zip_codes[10]
+			profile.nearbyzips12 = zip_codes[11]
+			profile = form.save()
+			return HttpResponseRedirect('/accounts/{}'.format(request.session['username']))
+	else:
+		form = ProfileForm()
+		return render(request, 'edit_profile.html', {'form': form})
 
 
 def profile_detail(request, username):
@@ -156,11 +157,14 @@ def profile_detail(request, username):
     #         h.save()
     #         return redirect('/accounts/{}'.format(tester1))
     # else:
-    form = UserReviewForm()
-    profile_info = MyProfile.objects.filter(user=username)
-    hotsellers = Entry.objects.filter(author__user=username)[:4]
-    userreviews = UserReview.objects.filter(name__username=username)
-    return render(request, 'profile_detail.html', {'profile': profile_info, 'hotsellers': hotsellers, 'userreviews': userreviews, 'form': form})
+    if MyProfile.objects.filter(user=username).exists():
+    	form = UserReviewForm()
+    	profile = MyProfile.objects.get(user=username)
+    	hotsellers = Entry.objects.filter(author__user=username)[:4]
+    	userreviews = UserReview.objects.filter(name__username=username)
+    	return render(request, 'profile_detail.html', {'profile': profile, 'hotsellers': hotsellers, 'userreviews': userreviews, 'form': form})
+    else:
+    	HttpResponseRedirect('/storefront')
 
 
 def show_reviews(request, username1):
@@ -170,20 +174,23 @@ def show_reviews(request, username1):
 
 
 def get_entry(request):
+	active_user = MyProfile.objects.get(user=request.session['username'])
+	if 'username' not in request.session:
+		return HttpResponseRedirect("/accounts/signin")
 	if request.method == 'POST':
 		f = SellForm(request.POST, request.FILES)
 		if f.is_valid():
 			form=f.save(commit=False)
-			form.author = request.session['username']
-			active_user = MyProfile.objects.filter(user=request.session['username'])
-			form.zipcode = active_user['zipcode']
+			print request.session['username']
+			form.author = active_user
+			form.zipcode = active_user.zipcode
 			form.save()
 			return HttpResponseRedirect('/accounts/{}'.format(request.session['username']))
 		else:
 			print f.errors
 	else:
 		f = SellForm()
-	return render(request, 'sell.html', {'form': f})
+	return render(request, 'sell.html', {'form': f, 'active_user': active_user})
 
 
 # def profile_listview(request, username,

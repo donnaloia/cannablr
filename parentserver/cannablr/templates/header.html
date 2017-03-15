@@ -26,9 +26,9 @@
 						<div class="dropdownContain">
 							<div class="dropOut">
 								<ul>
-									{% if user.is_authenticated %}
-									<li><a href="{% url 'userena_profile_detail' user.username %}">My Profile</a></li>
-									<li><a href="{% url 'userena_profile_edit' user.username %}">Edit Profile</a></li>
+									{% if active_user %}
+									<li><a href="/accounts/{{ active_user.user }}">My Profile</a></li>
+									<li><a href="/accounts/{{ active_user.user }}/edit">Edit Profile</a></li>
 									<li><a href="/accounts/password/reset"> Change Password</a></li>
 									<li><a href="/accounts/signout"> Log Out</a></li>
 									{% else %}

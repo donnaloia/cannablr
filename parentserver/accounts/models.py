@@ -7,7 +7,7 @@ import datetime
 
 
 class MyProfile(models.Model):
-    user = models.CharField(max_length=16)
+    user = models.CharField(max_length=16, unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     storename=models.CharField(null=True, blank=True, max_length=20)
