@@ -4,6 +4,7 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from django_resized import ResizedImageField
 import datetime
+from django.utils import timezone
 
 
 class MyProfile(models.Model):
@@ -39,6 +40,8 @@ class MyProfile(models.Model):
     coverpic = ResizedImageField(upload_to="site_media/media/covers/", null=True, blank=True)
     mugshot = ResizedImageField(upload_to="mugshots/", null=True, blank=True)
     privacy = models.BooleanField(default=False)
+    date_created = models.DateTimeField(default=timezone.now)
+    #datetime.date.today().strftime('%b, %d %Y')
 
 
     def __unicode__(self):

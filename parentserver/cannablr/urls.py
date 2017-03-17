@@ -14,6 +14,7 @@ from accounts.views import EntryAPI
 from accounts.views import UserAPI
 from accounts.views import signup
 from accounts.views import login
+from accounts.views import logout
 
 
 urlpatterns = [
@@ -26,11 +27,12 @@ urlpatterns = [
 
     #Account URLS
     url(r'^accounts/signup/$', signup),
+    url(r'^accounts/login/$', login),
+    url(r'^accounts/logout/$', logout),
     url(r'^accounts/signup/complete/$',TemplateView.as_view(template_name='signup_complete.html')),
     url(r'^accounts/(?P<username>[\@\.\w-]+)/$', profile_detail),
     # url(r'^accounts/(?P<username>[\@\.\w-]+)/listview/$', profile_listview),
     url(r'^accounts/(?P<username>[\@\.\w-]+)/edit/$', profile_edit),
-    url(r'^accounts/signin/$',login),
 
     #REST API - Not finished
     url(r'^api/storefront/$', EntryAPI),

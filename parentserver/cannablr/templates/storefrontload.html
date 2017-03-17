@@ -17,7 +17,7 @@
       </div>
       <div class="sellerdiv">
       	<div class="sellerpic"><a href="/accounts/{{ i.author.user }}"><img src="{{ i.author.mugshot.url }}"></a></div> 
-      	<div class="sellerinfo">Sold by <a href="/accounts/{{ i.author }}"><b>{% if i.author.storename %} {{ i.author.storename }} {% else %} {{ i.author.user }} {% endif %}</b></a></div>
+      	<div class="sellerinfo">Sold by <a href="/accounts/{{ i.author.user }}"><b>{% if i.author.storename %} {{ i.author.storename }} {% else %} {{ i.author.user }} {% endif %}</b></a></div>
       	<div class="hearts">{{ i.author.reviewavg|roundnumbers|safe }}</div>
       	<div class="reviewnum"></div>
       	<div class="posteddate">Posted {{ i.pub_date|timesince|upto:',' }} ago</div>

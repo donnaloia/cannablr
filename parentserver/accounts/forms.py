@@ -27,7 +27,7 @@ class LoginForm(forms.Form):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = MyProfile
-        exclude = ['user', 'privacy']
+        exclude = ['user', 'privacy', 'date_created']
         widgets = {
             'deliveryoption': forms.RadioSelect(choices=[
             (True, '  Yes'),

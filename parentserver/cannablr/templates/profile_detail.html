@@ -94,11 +94,11 @@
                     <a href="#">Options</a>
                     <ul class="dropdown">
                         <li>
-                        {% if user.is_authenticated %}
-                        <a href="{% url 'userena_profile_detail' user.username %}">My Profile</a>
+                        {% if active_user %}
+                        <a href="/accounts/{{ active_user.user }}">My Profile</a>
                         </li>
                         <li>
-                        <a href="{% url 'userena_profile_edit' user.username %}">Edit Profile</a>
+                        <a href="/accounts/{{ active_user.user }}/edit">Edit Profile</a>
                         </li>
                         <li>
                         <a href="/accounts/password/reset">Change Password</a>
@@ -160,7 +160,7 @@
                 </div>
                 <a href="#">
                 <div class="panel callout radius">
-                    <h6> {% if profile.storespecials %} {{ profile.storespecials }} {% else %} Joined on {{ profile.user.date_joined }} {% endif %}</h6>
+                    <h6> {% if profile.storespecials %} {{ profile.storespecials }} {% else %} Joined on {{ profile.user.date_created }} {% endif %}</h6>
                 </div>
                 </a>
             </div>
