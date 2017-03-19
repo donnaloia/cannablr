@@ -117,8 +117,9 @@ def login(request):
             username, password = (form.cleaned_data['username'],
                                                      form.cleaned_data['password'])
             active_token = cannablr_login(username, password)
+            validated_user = validate_token(active_token)
             request.session['active_token'] = active_token
-            request.sesion['username'] = username
+            request.session['username'] = validated_user
             return redirect('/accounts/{}'.format(request.session['username']))
     else:
         form = LoginForm()
